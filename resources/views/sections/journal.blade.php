@@ -1,4 +1,4 @@
-<section class="min-h-screen py-32 px-8 md:px-16 bg-[#060606] relative z-20 border-t border-white/5" id="journal">
+<section class="min-h-screen py-32 px-8 md:px-16 bg-[#060606] relative border-t border-white/5" id="journal">
     <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
         <h2 class="text-white text-6xl md:text-8xl lg:text-[110px] font-['Inter',sans-serif] font-bold tracking-tighter leading-none uppercase">

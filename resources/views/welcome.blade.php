@@ -14,14 +14,19 @@
     <!-- Navbar Component -->
     <x-navbar />
 
-    <!-- Hero Component -->
-    <x-hero />
+    <!-- Main Content Wrapper (To hide the sticky footer until the end) -->
+    <div class="relative z-20 bg-[#060606]">
+        <!-- Hero Component -->
+        <x-hero />
 
-    <!-- Content Sections -->
-    @include('sections.about')
-    @include('sections.works')
-    @include('sections.services')
-    @include('sections.journal')
+        <!-- Content Sections -->
+        @include('sections.about')
+        @include('sections.works')
+        @include('sections.services')
+        @include('sections.journal')
+    </div>
+
+    <!-- Contact Section (Sticky Reveal Footer) -->
     @include('sections.contact')
 
     <!-- Floating WhatsApp Action Button -->
