@@ -1,4 +1,4 @@
-<section class="min-h-screen py-32 px-8 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 bg-[#060606] relative border-t border-white/5" id="about">
+<section class="py-24 px-8 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 bg-[#060606] relative border-t border-white/5" id="about">
     <div class="pt-2 md:pt-4">
         <span class="text-[#555] text-[13px] font-['Outfit',sans-serif] tracking-[2px] font-medium uppercase">/ INTRODUCTION</span>
     </div>

@@ -11,7 +11,7 @@
 
     <ul class="hidden md:flex gap-10 list-none m-0 p-0">
         <li><a href="#about" class="text-white/80 no-underline text-[11px] font-medium tracking-[1.5px] uppercase transition-all duration-300 hover:text-white">About</a></li>
-        <li><a href="#works" class="text-white/80 no-underline text-[11px] font-medium tracking-[1.5px] uppercase transition-all duration-300 hover:text-white">Works</a></li>
+        <li><a href="#works-section" class="text-white/80 no-underline text-[11px] font-medium tracking-[1.5px] uppercase transition-all duration-300 hover:text-white">Works</a></li>
         <li><a href="#services" class="text-white/80 no-underline text-[11px] font-medium tracking-[1.5px] uppercase transition-all duration-300 hover:text-white">Services</a></li>
         <li><a href="#journal" class="text-white/80 no-underline text-[11px] font-medium tracking-[1.5px] uppercase transition-all duration-300 hover:text-white">Journal</a></li>
         <li><a href="#contact" class="text-white/80 no-underline text-[11px] font-medium tracking-[1.5px] uppercase transition-all duration-300 hover:text-white">Contact</a></li>

@@ -1,4 +1,4 @@
-<section class="min-h-screen py-32 px-8 md:px-16 bg-[#060606] relative border-t border-white/5" id="services">
+<section class="py-24 px-8 md:px-16 bg-[#060606] relative border-t border-white/5" id="services">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
         
         <!-- Kolom 1: Label -->

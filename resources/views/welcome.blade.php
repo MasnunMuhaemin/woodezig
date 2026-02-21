@@ -14,12 +14,9 @@
     <!-- Navbar Component -->
     <x-navbar />
 
-    <!-- Main Content Wrapper (To hide the sticky footer until the end) -->
-    <div class="relative z-20 bg-[#060606]">
-        <!-- Hero Component -->
+    <!-- Main Content Wrapper (To enable the sticky reveal footer) -->
+    <div class="relative z-20 bg-[#060606] shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
         <x-hero />
-
-        <!-- Content Sections -->
         @include('sections.about')
         @include('sections.works')
         @include('sections.services')
@@ -58,16 +55,32 @@
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
-                if (targetId !== '#' && targetId.length > 1) {
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        lenis.scrollTo(targetElement, {
-                            offset: -80, // Mengurangi tinggi navbar agar tidak tertutupi
-                            duration: 1.5,
-                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), 
-                        });
-                    }
+                if (targetId === '#' || targetId.length <= 1) return;
+
+                const targetElement = document.querySelector(targetId);
+                
+                // Cek apakah navigasi ini harus meloncati area Works (dari atas ke bawah atau sebaliknya)
+                const currentId = window.location.hash || '#home';
+                const isCrossingWorks = (
+                    (['#home', '#about'].includes(currentId) && ['#services', '#journal', '#contact'].includes(targetId)) ||
+                    (['#services', '#journal', '#contact'].includes(currentId) && ['#home', '#about'].includes(targetId))
+                );
+                
+                const scrollOptions = {
+                    offset: targetId === '#works-section' ? 0 : -80,
+                    duration: isCrossingWorks ? 0.6 : 1.2, // Drastis dipercepat jika melintasi Works
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    immediate: false // Tetap biarkan Lenis menghandle smooth-nya namun dengan durasi sangat singkat
+                };
+
+                if (targetId === '#contact') {
+                    lenis.scrollTo('bottom', scrollOptions);
+                } else if (targetElement) {
+                    lenis.scrollTo(targetElement, scrollOptions);
                 }
+                
+                // Update URL hash tanpa jump
+                history.pushState(null, null, targetId);
             });
         });
     </script>
