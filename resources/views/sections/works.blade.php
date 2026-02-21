@@ -4,7 +4,7 @@
         
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-4 px-8 md:px-16 w-full shrink-0">
-            <h2 class="text-white text-6xl md:text-8xl lg:text-[110px] font-['Inter',sans-serif] font-bold tracking-tighter leading-none uppercase">
+            <h2 class="works-section-title text-white text-6xl md:text-8xl lg:text-[110px] font-['Inter',sans-serif] font-bold tracking-tighter leading-none uppercase">
                 / WORK
             </h2>
             

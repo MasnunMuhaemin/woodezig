@@ -13,7 +13,7 @@
     <div class="flex flex-col flex-grow">
         <span class="text-[#777] text-[12px] font-['Inter',sans-serif] mb-3">{{ $date }}</span>
         
-        <h3 class="{{ $isLarge ? 'text-2xl md:text-3xl lg:text-[32px]' : 'text-xl md:text-[22px]' }} text-white font-['Inter',sans-serif] font-medium leading-[1.4] mb-6 group-hover:text-white/80 transition-colors duration-300">
+        <h3 class="journal-title {{ $isLarge ? 'text-2xl md:text-3xl lg:text-[32px]' : 'text-xl md:text-[22px]' }} text-white font-['Inter',sans-serif] font-medium leading-[1.4] mb-6 group-hover:text-white/80 transition-colors duration-300">
             {{ $title }}
         </h3>
         

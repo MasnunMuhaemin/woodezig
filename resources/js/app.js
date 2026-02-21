@@ -150,3 +150,112 @@ document.addEventListener("DOMContentLoaded", () => {
     // Jalankan auto-loop pertama kali
     startAutoLoop();
 });
+
+// Script untuk Animasi Reveal Text per Karakter pada Journal Header (Dramatis)
+document.addEventListener("DOMContentLoaded", () => {
+    const sectionTitles = document.querySelectorAll(
+        ".journal-section-title, .works-section-title",
+    );
+
+    sectionTitles.forEach((title) => {
+        const text = title.innerText.trim();
+        title.innerHTML = "";
+
+        // Pecah teks menjadi karakter individual
+        [...text].forEach((char) => {
+            const wrapper = document.createElement("span");
+            wrapper.style.display = "inline-block";
+            wrapper.style.overflow = "hidden";
+            wrapper.style.verticalAlign = "bottom";
+
+            const innerChar = document.createElement("span");
+            innerChar.innerText = char === " " ? "\u00A0" : char;
+            innerChar.style.display = "inline-block";
+            innerChar.style.transform = "translateY(110%)";
+            innerChar.style.transition =
+                "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
+            innerChar.className = "reveal-section-char";
+
+            wrapper.appendChild(innerChar);
+            title.appendChild(wrapper);
+        });
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const charsInTitle = entry.target.querySelectorAll(
+                        ".reveal-section-char",
+                    );
+                    if (entry.isIntersecting) {
+                        charsInTitle.forEach((char, index) => {
+                            setTimeout(() => {
+                                char.style.transform = "translateY(0)";
+                            }, index * 40); // Staggered delay per huruf (40ms)
+                        });
+                    } else {
+                        // Sembunyikan kembali saat keluar layar (scroll up/down)
+                        charsInTitle.forEach((char) => {
+                            char.style.transform = "translateY(110%)";
+                        });
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+        );
+
+        observer.observe(title);
+    });
+});
+
+// Script untuk Animasi Reveal Judul Artikel Journal (Muncul dari Bawah per KATA)
+document.addEventListener("DOMContentLoaded", () => {
+    const journalTitles = document.querySelectorAll(".journal-title");
+
+    journalTitles.forEach((title) => {
+        const text = title.innerText.trim();
+        const words = text.split(/\s+/);
+        title.innerHTML = "";
+
+        words.forEach((word) => {
+            const wrapper = document.createElement("span");
+            wrapper.style.display = "inline-block";
+            wrapper.style.overflow = "hidden";
+            wrapper.style.verticalAlign = "top";
+
+            const innerWord = document.createElement("span");
+            innerWord.innerText = word + "\u00A0"; // Tambahkan spasi antar kata
+            innerWord.style.display = "inline-block";
+            innerWord.style.transform = "translateY(110%)";
+            innerWord.style.transition =
+                "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+            innerWord.className = "reveal-word";
+
+            wrapper.appendChild(innerWord);
+            title.appendChild(wrapper);
+        });
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const wordsInTitle =
+                        entry.target.querySelectorAll(".reveal-word");
+                    if (entry.isIntersecting) {
+                        wordsInTitle.forEach((word, index) => {
+                            setTimeout(() => {
+                                word.style.transform = "translateY(0)";
+                            }, index * 40); // Staggered delay per kata (40ms)
+                        });
+                    } else {
+                        // Sembunyikan kembali saat keluar layar (scroll up/down)
+                        wordsInTitle.forEach((word) => {
+                            word.style.transform = "translateY(110%)";
+                        });
+                    }
+                });
+            },
+            { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
+        );
+
+        observer.observe(title);
+    });
+});
