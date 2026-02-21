@@ -14,11 +14,11 @@
         <!-- Contact Info Content -->
         <div class="flex flex-col max-w-xl">
             <h2 class="text-white text-4xl md:text-5xl lg:text-[42px] font-medium leading-[1.2] mb-12 font-['Inter',sans-serif]">
-                We're Committed to finding the best solution for you
+                Kami Berkomitmen Untuk Menemukan Solusi Terbaik Untuk Anda
             </h2>
 
             <a href="mailto:hello@woodezig.com" class="group flex items-center gap-3 text-white text-[13px] font-['Outfit',sans-serif] tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-white transition-colors duration-300 w-fit mb-16">
-                GET IN TOUCH 
+                HUBUNGI KAMI 
                 <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                 </svg>
@@ -48,7 +48,7 @@
     <!-- Footer Area -->
     <div class="relative z-10 pt-32 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-white/5 mt-auto">
         <div class="flex flex-col gap-4 items-center md:items-start">
-            <a href="#journal" class="text-white/40 hover:text-white text-[11px] font-['Outfit',sans-serif] tracking-[2px] uppercase transition-colors">JOURNAL</a>
+            <a href="#journal" class="text-white/40 hover:text-white text-[11px] font-['Outfit',sans-serif] tracking-[2px] uppercase transition-colors">JURNAL</a>
             <p class="text-white/30 text-[10px] uppercase font-['Outfit',sans-serif] tracking-[1px]">&copy; 2026 WOODEZIG</p>
         </div>
 
