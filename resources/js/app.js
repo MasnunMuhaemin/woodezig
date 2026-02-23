@@ -1,7 +1,6 @@
 import "./bootstrap";
 
 document.addEventListener("DOMContentLoaded", () => {
-
     // ===============================
     // REVEAL TEXT SCROLL (SYNC LENIS)
     // ===============================
@@ -47,7 +46,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     // ===============================
     // HORIZONTAL SCROLL WORKS
     // ===============================
@@ -73,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-
     // ===============================
     // SERVICES IMAGE HOVER LOOP
     // ===============================
@@ -81,7 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const serviceImages = document.querySelectorAll(".service-img");
 
     if (serviceItems.length && serviceImages.length) {
-
         let currentIndex = 0;
         let autoLoopInterval;
         let isHovering = false;
@@ -103,7 +99,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (!isHovering) {
                     currentIndex = (currentIndex + 1) % serviceImages.length;
                     const nextId =
-                        serviceImages[currentIndex].getAttribute("data-service");
+                        serviceImages[currentIndex].getAttribute(
+                            "data-service",
+                        );
                     showImage(nextId);
                 }
             }, 3000);
@@ -127,12 +125,11 @@ document.addEventListener("DOMContentLoaded", () => {
         startAutoLoop();
     }
 
-
     // ===============================
     // SECTION TITLE REVEAL
     // ===============================
     const sectionTitles = document.querySelectorAll(
-        ".journal-section-title, .works-section-title"
+        ".journal-section-title, .works-section-title",
     );
 
     sectionTitles.forEach((title) => {
@@ -159,8 +156,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    const chars =
-                        entry.target.querySelectorAll(".reveal-section-char");
+                    const chars = entry.target.querySelectorAll(
+                        ".reveal-section-char",
+                    );
 
                     if (entry.isIntersecting) {
                         chars.forEach((char, index) => {
@@ -175,12 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
             },
-            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
         );
 
         observer.observe(title);
     });
-
 
     // ===============================
     // JOURNAL TITLE WORD REVEAL
@@ -212,8 +209,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    const words =
-                        entry.target.querySelectorAll(".reveal-word");
+                    const words = entry.target.querySelectorAll(".reveal-word");
 
                     if (entry.isIntersecting) {
                         words.forEach((word, index) => {
@@ -228,10 +224,35 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
             },
-            { threshold: 0.1, rootMargin: "0px 0px -100px 0px" }
+            { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
         );
 
         observer.observe(title);
     });
 
+    // ===============================
+    // NAVBAR SCROLL EFFECT (LENIS)
+    // ===============================
+    const navbar = document.getElementById("navbar");
+
+    if (navbar && window.lenis) {
+        window.lenis.on("scroll", ({ scroll }) => {
+            if (scroll > 50) {
+                navbar.classList.add(
+                    "bg-black/80",
+                    "backdrop-blur-xl",
+                    "border-white/10",
+                );
+                navbar.classList.remove("bg-transparent", "border-transparent");
+            } else {
+                navbar.classList.remove(
+                    "bg-black/80",
+                    "backdrop-blur-xl",
+                    "border-white/10",
+                );
+                navbar.classList.add("bg-transparent", "border-transparent");
+            }
+        });
+    }
+    
 });

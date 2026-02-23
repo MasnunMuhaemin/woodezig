@@ -4,29 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Woodezig - Beranda</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-
 <body class="bg-[#060606] text-white font-['Inter',sans-serif] overflow-x-clip antialiased">
-
     <x-navbar />
-
     <!-- HERO -->
     <div id="home" class="sticky top-0 h-screen w-full z-[15]">
-
         <!-- Background solid (ANTI TEMBUS) -->
         <div class="absolute inset-0 bg-[#060606] -z-10"></div>
-
         <!-- Hero Content (yang akan fade) -->
         <div id="hero-content" class="h-full w-full">
             <x-hero />
         </div>
-
     </div>
-
     <!-- CONTENT -->
     <div class="relative z-[20] bg-[#060606] mb-[100vh]">
         @include('sections.about')
@@ -34,14 +24,11 @@
         @include('sections.services')
         @include('sections.journal')
     </div>
-
     <!-- FOOTER FIXED LAYER -->
     <div id="contact" class="fixed bottom-0 left-0 w-full h-screen z-[10]">
         @include('sections.contact')
     </div>
-
     <x-floating-whatsapp />
-
     <!-- LENIS -->
     <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
     <script>
@@ -52,7 +39,6 @@
             wheelMultiplier: 1.1,
             touchMultiplier: 2,
         });
-
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
