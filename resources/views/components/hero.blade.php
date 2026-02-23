@@ -1,4 +1,4 @@
-<section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden" id="home">
+<section class="relative w-full h-screen flex flex-col justify-center items-center overflow-hidden">
     
     <!-- Fullscreen Background Video -->
     <div class="absolute inset-0 w-full h-full z-0">

@@ -3,7 +3,7 @@
         
         <!-- Kolom 1: Label -->
         <div class="lg:col-span-2 pt-4">
-            <span class="text-[#555] text-[13px] font-['Outfit',sans-serif] tracking-[2px] font-medium uppercase">/ KEAHLIAN</span>
+            <span class="text-[#555] text-lg font-['Outfit',sans-serif] tracking-[2px] font-medium uppercase">/ KEAHLIAN</span>
         </div>
 
         <!-- Kolom 2: Dinamis Image (Tampil berdasarkan hover) -->

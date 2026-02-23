@@ -1,4 +1,4 @@
-<section class="min-h-screen pt-32 pb-12 px-8 md:px-16 bg-[#111] sticky bottom-0 z-10 overflow-hidden flex flex-col justify-between" id="contact">
+<section class="min-h-screen pt-32 pb-12 px-8 md:px-16 bg-[#111] relative z-[11] overflow-hidden flex flex-col justify-between" id="contact">
     
     <!-- Background Watermark (Geometric Shape) -->
     <div class="absolute left-0 bottom-0 w-1/2 h-full opacity-5 pointer-events-none select-none">
@@ -7,6 +7,8 @@
         </svg>
     </div>
 
+    <!-- Konten yang dianimasikan (bukan section-nya) -->
+    <div id="contact-content" class="flex flex-col flex-1">
     <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
         <!-- Spacer for watermark on large screens -->
         <div class="hidden lg:block h-1"></div>
@@ -62,4 +64,6 @@
             </a>
         </div>
     </div>
+    </div><!-- end contact-content -->
 </section>
+

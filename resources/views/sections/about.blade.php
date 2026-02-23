@@ -1,6 +1,6 @@
 <section class="py-24 px-8 md:px-16 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-8 bg-[#060606] relative border-t border-white/5" id="about">
     <div class="pt-2 md:pt-4">
-        <span class="text-[#555] text-[13px] font-['Outfit',sans-serif] tracking-[2px] font-medium uppercase">/ PENGENALAN</span>
+        <span class="text-[#555] text-lg font-['Outfit',sans-serif] tracking-[2px] font-medium uppercase">/ PENGENALAN</span>
     </div>
     <div class="flex flex-col items-start">
         <p id="reveal-text" class="reveal-text font-['Inter',sans-serif] text-3xl md:text-5xl lg:text-[42px] xl:text-[50px] font-medium leading-[1.3] md:leading-[1.2] lg:leading-[1.15]">
