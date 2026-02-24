@@ -24,6 +24,7 @@
     @endif
 
     <x-floating-whatsapp />
+    <x-scroll-to-top />
 
     @stack('scripts')
 
