@@ -47,11 +47,22 @@ requestAnimationFrame(raf);
 
 window.lenis = lenis;
 
-// Smooth anchor scroll
+// ===============================
+// FIX ANCHOR (IMPORTANT FIX)
+// ===============================
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
+
+        // SPECIAL CASE FOR CONTACT (because it's fixed)
+        if (targetId === '#contact') {
+            lenis.scrollTo(document.body.scrollHeight, {
+                duration: 1.2
+            });
+            return;
+        }
+
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {

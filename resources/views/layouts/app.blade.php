@@ -6,7 +6,7 @@
     <title>Woodezig</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="bg-[#060606] text-white font-sans overflow-x-clip antialiased">
+<body class="bg-[#060606] text-white font-sans overflow-x-clip antialiased scroll-smooth scroll-pt-32 relative">
 
     {{-- Optional Navbar --}}
     @hasSection('navbar')

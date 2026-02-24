@@ -1,7 +1,6 @@
-<section 
-    id="contact"
-    class="min-h-screen pt-32 pb-12 px-8 md:px-16 
-           bg-[#111] relative z-[11] overflow-hidden 
+<section id="contact"
+         class="min-h-screen pt-32 pb-12 px-8 md:px-16 
+                bg-[#111] relative scroll-mt-32 z-[11] overflow-hidden 
            flex flex-col justify-between">  
     <!-- Background Watermark -->
     <div class="absolute left-0 bottom-0 w-1/2 h-full 
