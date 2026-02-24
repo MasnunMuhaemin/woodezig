@@ -1,5 +1,18 @@
-<a href="https://wa.me/1234567890" class="fixed bottom-10 right-10 w-14 h-14 bg-white rounded-full flex justify-center items-center shadow-[0_10px_25px_rgba(0,0,0,0.5)] z-[100] transition-transform duration-300 hover:scale-110 hover:-translate-y-1" target="_blank" rel="noopener noreferrer" title="Chat with us via WhatsApp">
-    <svg viewBox="0 0 24 24" class="w-8 h-8 fill-black" xmlns="http://www.w3.org/2000/svg">
-        <path d="M12.031 0C5.385 0 0 5.378 0 12.016c0 2.128.552 4.195 1.6 6.012L.416 22.316l4.42-1.157A11.97 11.97 0 0012.03 24c6.645 0 12.03-5.383 12.03-12.03C24.06 5.38 18.675 0 12.03 0zm0 21.986c-1.801 0-3.565-.487-5.115-1.408l-.367-.216-3.284.86.877-3.193-.238-.38A9.975 9.975 0 011.968 12.02c0-5.541 4.512-10.046 10.063-10.046 5.548 0 10.06 4.512 10.06 10.06 0 5.547-4.51 10.048-10.06 10.048H12.03v-.096zm5.526-7.536c-.302-.152-1.789-.884-2.065-.986-.275-.102-.477-.152-.678.151-.202.304-.78 1.01-.955 1.213-.176.202-.352.228-.654.076-.301-.151-1.275-.469-2.428-1.503-.896-.803-1.501-1.796-1.678-2.1-.176-.303-.019-.467.132-.618.136-.137.302-.353.453-.531.152-.178.203-.304.303-.506.101-.202.051-.38-.025-.53-.075-.152-.677-1.632-.927-2.235-.243-.588-.49-.508-.678-.518-.175-.008-.376-.01-.577-.01-.2 0-.527.075-.803.38-.276.303-1.055 1.03-1.055 2.511 0 1.482 1.08 2.915 1.23 3.118.151.202 2.126 3.242 5.148 4.545.718.31 1.278.495 1.714.633.722.229 1.38.196 1.898.119.58-.086 1.789-.731 2.04-1.439.251-.707.251-1.314.176-1.442-.075-.126-.276-.202-.578-.353z"/>
+<a href="https://wa.me/1234567890"
+   class="hidden md:flex fixed bottom-10 right-10 
+          w-14 h-14 bg-white rounded-full 
+          justify-center items-center 
+          shadow-[0_10px_25px_rgba(0,0,0,0.5)] 
+          z-[100] 
+          transition-transform duration-300 
+          hover:scale-110 hover:-translate-y-1"
+   target="_blank"
+   rel="noopener noreferrer"
+   title="Chat with us via WhatsApp">
+
+    <svg viewBox="0 0 24 24" 
+         class="w-8 h-8 fill-black" 
+         xmlns="http://www.w3.org/2000/svg">
+        ...
     </svg>
 </a>
