@@ -5,7 +5,8 @@
     'class' => ''
 ])
 
-<div class="flex flex-col group cursor-pointer shrink-0 {{ $class }}">    
+<a href="{{ route('works.maintenance') }}" 
+   class="flex flex-col group cursor-pointer shrink-0 {{ $class }}">    
     <div class="w-full aspect-square overflow-hidden mb-4 md:mb-5 relative bg-[#111]">
         <img src="{{ $image }}" 
              alt="{{ $title }}" 
@@ -18,4 +19,4 @@
     <p class="text-[#777] text-[10px] font-semibold tracking-[1.5px] uppercase">
         {{ $category }}
     </p>
-</div>
+</a>
