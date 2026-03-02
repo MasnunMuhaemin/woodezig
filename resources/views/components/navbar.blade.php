@@ -7,17 +7,16 @@
             font-sans
             z-50">
     <a href="#home"
-       class="flex items-center gap-3 
-              font-medium text-[15px] 
-              tracking-[3px] uppercase text-white">
-        WOODEZIG
+       class="flex items-center gap-3">
+        <img src="{{ asset('logo/Logo-White.svg') }}" alt="Woodezig Logo" class="h-5 md:h-6 w-auto">
     </a>
     <!-- DESKTOP MENU -->
     <ul class="hidden md:flex gap-10">
         <li><a href="#about" class="hover:text-white/70 transition">Tentang</a></li>
+        <li><a href="#products" class="hover:text-white/70 transition">Produk</a></li>
         <li><a href="#works-section" class="hover:text-white/70 transition">Karya</a></li>
         <li><a href="#services" class="hover:text-white/70 transition">Layanan</a></li>
-        <li><a href="#journal" class="hover:text-white/70 transition">Jurnal</a></li>
+        <li><a href="#journal" class="hover:text-white/70 transition">Artikel</a></li>
         <li><a href="#contact" class="hover:text-white/70 transition">Kontak</a></li>
     </ul>
     <!-- SINGLE HAMBURGER -->
@@ -39,9 +38,10 @@
 
         <div class="flex flex-col items-center gap-10 text-2xl uppercase">
             <a href="#about" class="mobile-link">Tentang</a>
+            <a href="#products" class="mobile-link">Produk</a>
             <a href="#works-section" class="mobile-link">Karya</a>
             <a href="#services" class="mobile-link">Layanan</a>
-            <a href="#journal" class="mobile-link">Jurnal</a>
+            <a href="#journal" class="mobile-link">Artikel</a>
             <a href="#contact" class="mobile-link">Kontak</a>
         </div>
     </div>

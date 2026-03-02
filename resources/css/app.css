@@ -14,7 +14,10 @@
 }
 
 @layer base {
-    section {
+    body,
+    nav,
+    section,
+    footer {
         @apply font-jakarta;
     }
 }

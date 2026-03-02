@@ -4,7 +4,7 @@
         <!-- Header Section -->
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-4 px-8 md:px-16 w-full shrink-0">
             <h2 class="works-section-title text-white text-6xl md:text-8xl lg:text-[110px] font-sans font-bold tracking-tighter leading-none uppercase">
-                / KARYA
+                KARYA
             </h2>            
             <a href="{{ route('works.maintenance') }}" class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-white transition-colors duration-300">
                 SEMUA KARYA 

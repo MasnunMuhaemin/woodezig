@@ -13,6 +13,7 @@
 <!-- CONTENT -->
 <div class="relative z-[20] bg-[#060606] mb-[100vh]">
     @include('sections.about')
+    @include('sections.products')
     @include('sections.works')
     @include('sections.services')
     @include('sections.journal')

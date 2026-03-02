@@ -7,7 +7,7 @@
     <div class="pt-2 md:pt-4">
         <span class="text-white/40 text-sm md:text-base 
                      tracking-[2px] font-medium uppercase">
-            / PENGENALAN
+            PENGENALAN
         </span>
     </div>
     <!-- Right Content -->

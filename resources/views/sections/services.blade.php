@@ -3,7 +3,7 @@
         <!-- Kolom 1: Label -->
         <div class="lg:col-span-2 pt-4">
             <span class="text-[#555] text-lg font-sans tracking-[2px] font-medium uppercase">
-                / KEAHLIAN
+                LAYANAN
             </span>
         </div>
         <!-- Kolom 2: Dinamis Image (Tampil berdasarkan hover) -->
