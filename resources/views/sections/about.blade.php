@@ -5,9 +5,9 @@
            border-t border-white/5">
     <!-- Left Label -->
     <div class="pt-2 md:pt-4">
-        <span class="text-white/40 text-sm md:text-base 
+        <span class="text-primary text-sm md:text-base 
                      tracking-[2px] font-medium uppercase">
-            PENGENALAN
+            Tentang Woodezig
         </span>
     </div>
     <!-- Right Content -->
@@ -16,7 +16,8 @@
            class="text-3xl md:text-5xl lg:text-[42px] xl:text-[50px] 
                   font-medium tracking-tight 
                   leading-[1.3] md:leading-[1.2] lg:leading-[1.15]">
-            Berbasis di Jakarta, agensi branding Woodezig menyediakan solusi kreatif satu pintu yang mencakup Branding Terintegrasi, Desain Grafis, Desain Website, Desain Arsitektur & Interior, semuanya demi memajukan bisnis Anda dengan menggunakan solusi desain yang efektif.
+            Woodezig membantu perusahaan, organisasi, dan event menghadirkan produk yang berkesan.
+            Dari plakat dan seminar kit hingga produk kreatif anak, semuanya dirancang dan diproduksi dengan kreativitas dan kualitas terbaik.
         </p>
     </div>
 </section>

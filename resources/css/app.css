@@ -11,6 +11,7 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
     --font-jakarta: "Plus Jakarta Sans", sans-serif;
+    --color-primary: #f7941d;
 }
 
 @layer base {

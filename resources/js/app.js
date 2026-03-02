@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===============================
-    // SERVICES IMAGE HOVER LOOP
+    // SERVICES IMAGE HOVER + AUTO LOOP
     // ===============================
     const serviceItems = document.querySelectorAll(".service-item");
     const serviceImages = document.querySelectorAll(".service-img");
@@ -82,9 +82,32 @@ document.addEventListener("DOMContentLoaded", () => {
         let autoLoopInterval;
         let isHovering = false;
 
-        function showImage(id) {
-            serviceImages.forEach((img) => {
-                if (img.getAttribute("data-service") === id) {
+        function resetTextToDefault() {
+            serviceItems.forEach((el) => {
+                el.classList.remove("text-white/30", "text-primary");
+                el.classList.add("text-white");
+            });
+        }
+
+        function setActiveText(index) {
+            serviceItems.forEach((el, i) => {
+                el.classList.remove(
+                    "text-white",
+                    "text-white/30",
+                    "text-primary",
+                );
+
+                if (i === index) {
+                    el.classList.add("text-primary");
+                } else {
+                    el.classList.add("text-white/30");
+                }
+            });
+        }
+
+        function showImageByIndex(index) {
+            serviceImages.forEach((img, i) => {
+                if (i === index) {
                     img.classList.remove("opacity-0");
                     img.classList.add("opacity-100");
                 } else {
@@ -92,36 +115,50 @@ document.addEventListener("DOMContentLoaded", () => {
                     img.classList.add("opacity-0");
                 }
             });
+
+            // Sinkronkan teks dengan gambar
+            setActiveText(index);
+        }
+
+        function showImageById(id) {
+            serviceImages.forEach((img, i) => {
+                if (img.dataset.item === id) {
+                    currentIndex = i;
+                    showImageByIndex(i);
+                }
+            });
         }
 
         function startAutoLoop() {
+            clearInterval(autoLoopInterval);
+
             autoLoopInterval = setInterval(() => {
                 if (!isHovering) {
                     currentIndex = (currentIndex + 1) % serviceImages.length;
-                    const nextId =
-                        serviceImages[currentIndex].getAttribute(
-                            "data-service",
-                        );
-                    showImage(nextId);
+                    showImageByIndex(currentIndex);
                 }
             }, 3000);
         }
 
-        serviceItems.forEach((item, index) => {
+        // Hover Events
+        serviceItems.forEach((item) => {
             item.addEventListener("mouseenter", () => {
                 isHovering = true;
                 clearInterval(autoLoopInterval);
-                currentIndex = index;
-                const serviceId = item.getAttribute("data-service-id");
-                showImage(serviceId);
+
+                const id = item.dataset.item;
+                showImageById(id);
             });
 
             item.addEventListener("mouseleave", () => {
                 isHovering = false;
+                resetTextToDefault();
                 startAutoLoop();
             });
         });
 
+        // Start pertama kali
+        showImageByIndex(0);
         startAutoLoop();
     }
 
@@ -254,5 +291,4 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    
 });

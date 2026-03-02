@@ -8,16 +8,78 @@
             z-50">
     <a href="#home"
        class="flex items-center gap-3">
-        <img src="{{ asset('logo/Logo-White.svg') }}" alt="Woodezig Logo" class="h-5 md:h-6 w-auto">
+        <img src="{{ asset('logo/Logo-Primary.svg') }}" alt="Woodezig Logo" class="h-5 md:h-6 w-auto">
     </a>
     <!-- DESKTOP MENU -->
     <ul class="hidden md:flex gap-10">
-        <li><a href="#about" class="hover:text-white/70 transition">Tentang</a></li>
-        <li><a href="#products" class="hover:text-white/70 transition">Produk</a></li>
-        <li><a href="#works-section" class="hover:text-white/70 transition">Karya</a></li>
-        <li><a href="#services" class="hover:text-white/70 transition">Layanan</a></li>
-        <li><a href="#journal" class="hover:text-white/70 transition">Artikel</a></li>
-        <li><a href="#contact" class="hover:text-white/70 transition">Kontak</a></li>
+        <li>
+            <a href="#about"
+            class="relative text-white transition duration-300
+                    hover:text-primary
+                    after:content-['']
+                    after:absolute
+                    after:left-0
+                    after:-bottom-1
+                    after:w-0
+                    after:h-[2px]
+                    after:bg-white
+                    after:transition-all
+                    after:duration-300
+                    hover:after:w-full">
+                Tentang
+            </a>
+        </li>
+        <li>
+            <a href="#products"
+            class="relative text-white transition duration-300 hover:text-primary
+                    after:content-[''] after:absolute after:left-0 after:-bottom-1
+                    after:w-0 after:h-[2px] after:bg-white
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                Produk
+            </a>
+        </li>
+        <li>
+            <a href="#works-section"
+            class="relative text-white transition duration-300 hover:text-primary
+                    after:content-[''] after:absolute after:left-0 after:-bottom-1
+                    after:w-0 after:h-[2px] after:bg-white
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                Karya
+            </a>
+        </li>
+        <li>
+            <a href="#services"
+            class="relative text-white transition duration-300 hover:text-primary
+                    after:content-[''] after:absolute after:left-0 after:-bottom-1
+                    after:w-0 after:h-[2px] after:bg-white
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                Layanan
+            </a>
+        </li>
+
+        <li>
+            <a href="#journal"
+            class="relative text-white transition duration-300 hover:text-primary
+                    after:content-[''] after:absolute after:left-0 after:-bottom-1
+                    after:w-0 after:h-[2px] after:bg-white
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                Artikel
+            </a>
+        </li>
+        <li>
+            <a href="#contact"
+            class="relative text-white transition duration-300 hover:text-primary
+                    after:content-[''] after:absolute after:left-0 after:-bottom-1
+                    after:w-0 after:h-[2px] after:bg-white
+                    after:transition-all after:duration-300
+                    hover:after:w-full">
+                Kontak
+            </a>
+        </li>
     </ul>
     <!-- SINGLE HAMBURGER -->
     <button id="menu-btn"

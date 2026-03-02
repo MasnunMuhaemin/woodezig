@@ -20,7 +20,7 @@
 </div>
 
 <!-- FOOTER FIXED LAYER -->
-<div id="contact" class="fixed bottom-0 left-0 w-full h-screen z-[10]">
+<div id="contact" class="fixed bottom-0 left-0 z-[10]">
     @include('sections.contact')
 </div>
 
