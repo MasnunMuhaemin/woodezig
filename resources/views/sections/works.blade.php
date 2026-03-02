@@ -18,7 +18,6 @@
             @php
                 $cardWidth = "w-[85vw] md:w-[45vw] lg:w-[calc((100vw-14rem)/4)]";
             @endphp            
-
             <x-work-card 
                 class="{{ $cardWidth }}"
                 image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 

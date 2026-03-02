@@ -1,16 +1,12 @@
 <section id="contact"
     class="min-h-screen pt-32 pb-12 px-8 md:px-16 
            bg-[#111] relative scroll-mt-32 z-[11]">
-
     <div id="contact-content">
-
         <div class="relative z-10 
                     grid grid-cols-1 lg:grid-cols-12 
                     gap-16 items-start">
-
             <!-- LEFT COLUMN (LEBIH PANJANG) -->
             <div class="lg:col-span-7 flex flex-col">
-
                 <h2 class="text-4xl md:text-5xl lg:text-[42px] 
                            font-medium tracking-tight 
                            leading-[1.2]">
@@ -19,10 +15,8 @@
                 </h2>
 
             </div>
-
             <!-- RIGHT COLUMN (LEBIH KE KANAN) -->
             <div class="lg:col-span-5 flex flex-col space-y-10 lg:pl-12">
-
                 <!-- HUBUNGI KAMI -->
                 <div>
                     <a href="mailto:hello@woodezig.com"
@@ -44,10 +38,8 @@
                         </svg>
                     </a>
                 </div>
-
                 <!-- CONTACT DETAILS -->
                 <div class="space-y-6">
-
                     <div class="flex items-start gap-5 
                                 text-white/60 hover:text-white 
                                 transition-colors duration-300">
@@ -69,7 +61,6 @@
                             +62 21 5366 1256 / +62 819 9788 9988 (WA)
                         </span>
                     </div>
-
                     <div class="flex items-start gap-5 
                                 text-white/60 hover:text-white 
                                 transition-colors duration-300">
@@ -88,7 +79,6 @@
                             hello@woodezig.com
                         </span>
                     </div>
-
                     <div class="flex items-start gap-5 
                                 text-white/60 hover:text-white 
                                 transition-colors duration-300">
@@ -113,11 +103,8 @@
                             Jakarta Barat 11480, Indonesia
                         </p>
                     </div>
-
                 </div>
-
             </div>
-
         </div>
     </div>
 </section>
