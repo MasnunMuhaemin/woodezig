@@ -13,6 +13,8 @@
     @include('sections.products')
     @include('sections.works')
     @include('sections.services')
+    @include('sections.testimonials')
+    @include('sections.clients')
     @include('sections.journal')
 </div>
 <div id="contact" class="fixed bottom-0 left-0 z-[10]">
