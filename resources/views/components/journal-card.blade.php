@@ -25,7 +25,7 @@
         </h3>        
         <div class="mt-auto flex items-center gap-2 text-white/60 text-[11px] tracking-[2px] uppercase group-hover:text-white transition-colors duration-300">
             SELENGKAPNYA           
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" 
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" 
                  fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
                       d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

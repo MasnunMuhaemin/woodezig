@@ -8,10 +8,10 @@
             z-50">
     <a href="#home"
        class="flex items-center gap-3">
-        <img src="{{ asset('logo/Logo-Primary.svg') }}" alt="Woodezig Logo" class="h-5 md:h-6 w-auto">
+        <img src="{{ asset('logo/Logo-White.svg') }}" alt="Woodezig Logo" class="h-5 md:h-6 w-auto">
     </a>
     <!-- DESKTOP MENU -->
-    <ul class="hidden md:flex gap-10">
+    <ul class="hidden lg:flex lg:gap-6 xl:gap-10">
         <li>
             <a href="#about"
             class="relative text-white transition duration-300
@@ -30,7 +30,7 @@
             </a>
         </li>
         <li>
-            <a href="#products"
+            <a href="#products-section"
             class="relative text-white transition duration-300 hover:text-primary
                     after:content-[''] after:absolute after:left-0 after:-bottom-1
                     after:w-0 after:h-[2px] after:bg-white
@@ -83,7 +83,7 @@
     </ul>
     <!-- SINGLE HAMBURGER -->
     <button id="menu-btn"
-            class="md:hidden flex flex-col gap-1.5 z-50">
+            class="lg:hidden flex flex-col gap-1.5 z-50">
         <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
         <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
         <span class="w-6 h-[2px] bg-white transition-all duration-300"></span>
@@ -96,11 +96,11 @@
                 bg-black/70 backdrop-blur-2xl
                 opacity-0 invisible
                 transition-all duration-500
-                md:hidden z-40">
+                lg:hidden z-40">
 
         <div class="flex flex-col items-center gap-10 text-2xl uppercase">
             <a href="#about" class="mobile-link">Tentang</a>
-            <a href="#products" class="mobile-link">Produk</a>
+            <a href="#products-section" class="mobile-link">Produk</a>
             <a href="#works-section" class="mobile-link">Karya</a>
             <a href="#services" class="mobile-link">Layanan</a>
             <a href="#journal" class="mobile-link">Artikel</a>

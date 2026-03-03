@@ -1,16 +1,14 @@
 <section 
     id="about"
-    class="py-24 px-8 md:px-16 grid grid-cols-1 md:grid-cols-2 
-           gap-12 md:gap-8 bg-[#060606] relative 
+    class="py-24 px-8 lg:px-16 grid grid-cols-1 lg:grid-cols-2 
+           gap-12 lg:gap-8 bg-[#060606] relative 
            border-t border-white/5">
-    <!-- Left Label -->
-    <div class="pt-2 md:pt-4">
-        <span class="text-primary text-sm md:text-base 
+    <div class="pt-2 lg:pt-4">
+        <span class="text-primary text-sm lg:text-base 
                      tracking-[2px] font-medium uppercase">
             Tentang Woodezig
         </span>
     </div>
-    <!-- Right Content -->
     <div class="flex flex-col items-start">
         <p id="reveal-text"
            class="text-3xl md:text-5xl lg:text-[42px] xl:text-[50px] 

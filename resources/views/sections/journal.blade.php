@@ -1,19 +1,17 @@
 <section class="py-24 px-8 md:px-16 bg-[#060606] relative border-t border-white/5 font-sans" id="journal">    
-    <!-- Section Header -->
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
         <h2 class="journal-section-title text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tighter leading-none uppercase">
             ARTIKEL
         </h2>
         <a href="{{ route('works.maintenance') }}" 
-           class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-white transition-colors duration-300">
+           class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-primary transition-colors duration-300">
             SEMUA ARTIKEL 
-            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 transform group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
         </a>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
-        <!-- Featured -->
         <div class="lg:col-span-3">
             <x-journal-card 
                 :isLarge="true"
@@ -23,7 +21,6 @@
                 :href="route('works.maintenance')" 
             />
         </div>
-        <!-- Side Post 1 -->
         <div class="lg:col-span-1">
             <x-journal-card 
                 image="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=800&auto=format&fit=crop"
@@ -32,7 +29,6 @@
                 :href="route('works.maintenance')" 
             />
         </div>
-        <!-- Side Post 2 -->
         <div class="lg:col-span-1">
             <x-journal-card 
                 image="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop"

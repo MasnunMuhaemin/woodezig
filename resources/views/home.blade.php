@@ -2,15 +2,12 @@
 
 @section('content')
 
-<!-- HERO -->
 <div id="home" class="sticky top-0 h-screen w-full z-[15]">
     <div class="absolute inset-0 bg-[#060606] -z-10"></div>
     <div id="hero-content" class="h-full w-full">
         <x-hero />
     </div>
 </div>
-
-<!-- CONTENT -->
 <div class="relative z-[20] bg-[#060606] mb-[100vh]">
     @include('sections.about')
     @include('sections.products')
@@ -18,8 +15,6 @@
     @include('sections.services')
     @include('sections.journal')
 </div>
-
-<!-- FOOTER FIXED LAYER -->
 <div id="contact" class="fixed bottom-0 left-0 z-[10]">
     @include('sections.contact')
 </div>
@@ -28,7 +23,6 @@
 
 @push('scripts')
 
-<!-- LENIS -->
 <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
 
 <script>
@@ -55,15 +49,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-
-        // SPECIAL CASE FOR CONTACT (because it's fixed)
         if (targetId === '#contact') {
             lenis.scrollTo(document.body.scrollHeight, {
                 duration: 1.2
             });
             return;
         }
-
+        if (targetId === '#home') {
+            lenis.scrollTo(0, {
+                duration: 1.2
+            });
+            return;
+        }
         const targetElement = document.querySelector(targetId);
 
         if (targetElement) {
@@ -75,9 +72,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// HERO FADE
 const heroContent = document.getElementById('hero-content');
-
 lenis.on('scroll', ({ scroll }) => {
     const vh = window.innerHeight;
 

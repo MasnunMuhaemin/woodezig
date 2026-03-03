@@ -47,29 +47,45 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===============================
-    // HORIZONTAL SCROLL WORKS
+    // HORIZONTAL SCROLL WORKS & PRODUCTS
     // ===============================
-    const section = document.getElementById("works-section");
-    const track = document.getElementById("works-track");
+    const horizontalSections = [
+        {
+            section: document.getElementById("works-section"),
+            track: document.getElementById("works-track"),
+        },
+        {
+            section: document.getElementById("products-section"),
+            track: document.getElementById("products-track"),
+        },
+    ];
 
-    if (section && track) {
-        window.lenis?.on("scroll", () => {
-            const rect = section.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
+    horizontalSections.forEach(({ section, track }) => {
+        if (section && track) {
+            window.lenis?.on("scroll", () => {
+                // Di mobile, biarkan drag / swipe asli bekerja
+                if (window.innerWidth < 1024) {
+                    track.style.transform = "none";
+                    return;
+                }
 
-            const maxScrollDist = section.offsetHeight - viewportHeight;
-            const maxTranslateDist = track.scrollWidth - window.innerWidth;
+                const rect = section.getBoundingClientRect();
+                const viewportHeight = window.innerHeight;
 
-            if (maxTranslateDist <= 0) return;
+                const maxScrollDist = section.offsetHeight - viewportHeight;
+                const maxTranslateDist = track.scrollWidth - window.innerWidth;
 
-            let progress = -rect.top / maxScrollDist;
-            progress = Math.max(0, Math.min(1, progress));
+                if (maxTranslateDist <= 0) return;
 
-            const translateX = progress * maxTranslateDist;
+                let progress = -rect.top / maxScrollDist;
+                progress = Math.max(0, Math.min(1, progress));
 
-            track.style.transform = `translateX(-${translateX}px)`;
-        });
-    }
+                const translateX = progress * maxTranslateDist;
+
+                track.style.transform = `translateX(-${translateX}px)`;
+            });
+        }
+    });
 
     // ===============================
     // SERVICES IMAGE HOVER + AUTO LOOP
@@ -166,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // SECTION TITLE REVEAL
     // ===============================
     const sectionTitles = document.querySelectorAll(
-        ".journal-section-title, .works-section-title",
+        ".journal-section-title, .works-section-title, .products-section-title",
     );
 
     sectionTitles.forEach((title) => {

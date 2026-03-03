@@ -5,7 +5,6 @@
         <div class="relative z-10 
                     grid grid-cols-1 lg:grid-cols-12 
                     gap-16 items-start">
-            <!-- LEFT COLUMN (LEBIH PANJANG) -->
             <div class="lg:col-span-7 flex flex-col">
                 <h2 class="text-4xl md:text-5xl lg:text-[42px] 
                            font-medium tracking-tight 
@@ -13,11 +12,46 @@
                     Konsultasikan kebutuhan kreatif untuk menunjang moment anda.
                     Woodezig siap membantu dari konsep hingga produksi.
                 </h2>
-
+                <div class="mt-10 md:mt-14 flex flex-wrap items-center gap-6 md:gap-8">
+                    <a href="#" target="_blank" 
+                       class="flex items-center gap-2.5 text-sm md:text-base text-white/60 hover:text-primary tracking-[1px] md:tracking-[2px] uppercase transition-colors duration-300">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                        <span>@woodezig</span>
+                    </a>
+                    <span class="text-white/20 text-xs hidden md:block">•</span>
+                    <a href="#" target="_blank" 
+                       class="flex items-center gap-2.5 text-sm md:text-base text-white/60 hover:text-primary tracking-[1px] md:tracking-[2px] uppercase transition-colors duration-300">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
+                        <span>@woodezig</span>
+                    </a>
+                    <span class="text-white/20 text-xs hidden md:block">•</span>
+                    <a href="#" target="_blank" 
+                       class="flex items-center gap-2.5 text-sm md:text-base text-white/60 hover:text-primary tracking-[1px] md:tracking-[2px] uppercase transition-colors duration-300">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect width="4" height="12" x="2" y="9"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                        <span>@woodezig</span>
+                    </a>
+                    <span class="text-white/20 text-xs hidden md:block">•</span>
+                    <a href="#" target="_blank" 
+                       class="flex items-center gap-2.5 text-sm md:text-base text-white/60 hover:text-primary tracking-[1px] md:tracking-[2px] uppercase transition-colors duration-300">
+                        <svg class="w-4 h-4 md:w-5 md:h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"></path>
+                            <path d="m10 15 5-3-5-3z"></path>
+                        </svg>
+                        <span>@woodezig</span>
+                    </a>
+                </div>
             </div>
-            <!-- RIGHT COLUMN (LEBIH KE KANAN) -->
             <div class="lg:col-span-5 flex flex-col space-y-10 lg:pl-12">
-                <!-- HUBUNGI KAMI -->
                 <div>
                     <a href="mailto:hello@woodezig.com"
                         class="group flex items-center gap-3 
@@ -25,7 +59,7 @@
                                pb-2 border-b border-white/20 
                                hover:border-white transition-all duration-300 
                                w-fit">
-                        HUBUNGI KAMI
+                        Ayo Diskusi
                         <svg class="w-4 h-4 transform group-hover:translate-x-1 
                                     transition-transform duration-300"
                             fill="none" stroke="currentColor"
@@ -38,7 +72,6 @@
                         </svg>
                     </a>
                 </div>
-                <!-- CONTACT DETAILS -->
                 <div class="space-y-6">
                     <div class="flex items-start gap-5 
                                 text-white/60 hover:text-white 
@@ -58,7 +91,7 @@
                             </path>
                         </svg>
                         <span class="text-sm md:text-base">
-                            +62 21 5366 1256 / +62 819 9788 9988 (WA)
+                            +62 823456789 (WA)
                         </span>
                     </div>
                     <div class="flex items-start gap-5 
@@ -98,10 +131,48 @@
                                 d="M15 11a3 3 0 11-6 0 3 3 0 016 0z">
                             </path>
                         </svg>
-                        <p class="text-sm md:text-base leading-relaxed">
-                            Jalan Palmerah Utara 2 No. 201 AA Palmerah,<br>
-                            Jakarta Barat 11480, Indonesia
-                        </p>
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-white font-medium tracking-[1px] uppercase text-[11px] md:text-xs">Office</span>
+                            <p class="text-sm md:text-base leading-relaxed">
+                                Komplek vila pasir mas, Blok E 14.<br>
+                                Rt 007, Kel No.002
+                            </p>
+                            <a href="#" target="_blank" class="text-primary text-xs tracking-[1px] hover:text-white transition-colors w-fit pt-1">
+                                Buka di Maps →
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5 
+                                text-white/60 hover:text-white 
+                                transition-colors duration-300">
+                        <div class="w-5 h-5 shrink-0 flex justify-center items-center mt-1">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-white font-medium tracking-[1px] uppercase text-[11px] md:text-xs">Workshop</span>
+                            <p class="text-sm md:text-base leading-relaxed">
+                                [Masukkan alamat lengkap Workshop di sini]
+                            </p>
+                            <a href="#" target="_blank" class="text-primary text-xs tracking-[1px] hover:text-white transition-colors w-fit pt-1">
+                                Buka di Maps →
+                            </a>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-5 
+                                text-white/60 hover:text-white 
+                                transition-colors duration-300">
+                        <div class="w-5 h-5 shrink-0 flex justify-center items-center mt-1">
+                            <div class="w-1.5 h-1.5 rounded-full bg-white/20"></div>
+                        </div>
+                        <div class="flex flex-col gap-1.5">
+                            <span class="text-white font-medium tracking-[1px] uppercase text-[11px] md:text-xs">Store / Studio</span>
+                            <p class="text-sm md:text-base leading-relaxed">
+                                [Masukkan alamat lengkap cabang lainnya di sini]
+                            </p>
+                            <a href="#" target="_blank" class="text-primary text-xs tracking-[1px] hover:text-white transition-colors w-fit pt-1">
+                                Buka di Maps →
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

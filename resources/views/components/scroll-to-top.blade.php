@@ -11,14 +11,10 @@
            hover:translate-y-0 hover:scale-110
            hover:border-white/30
            z-[100]">
-           
-    <!-- Glow -->
     <div class="absolute inset-0 rounded-full
                 bg-white/5 opacity-0 blur-xl
                 transition duration-500
                 group-hover:opacity-100"></div>
-
-    <!-- Arrow -->
     <svg xmlns="http://www.w3.org/2000/svg"
          class="w-4 h-4 md:w-5 md:h-5 text-white relative z-10
                 transition-transform duration-300
