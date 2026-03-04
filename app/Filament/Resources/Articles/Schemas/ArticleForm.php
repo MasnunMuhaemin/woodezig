@@ -28,6 +28,7 @@ class ArticleForm
                     ->columnSpanFull(),
                 FileUpload::make('image')
                     ->image()
+                    ->disk('public')
                     ->required()
                     ->directory('articles'),
             ]);

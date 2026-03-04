@@ -48,6 +48,7 @@ class ProductForm
                     ->required(),
                 FileUpload::make('image')
                     ->label('Image')
+                    ->disk('public')
                     ->directory('products')
                     ->required(),
             ]);

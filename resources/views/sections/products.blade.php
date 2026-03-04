@@ -13,53 +13,31 @@
                 </svg>
             </a>
         </div>
-        <!-- Horizontal Track -->
         <div id="products-track" class="flex gap-6 lg:gap-8 px-8 md:px-16 w-full lg:w-max overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none lg:will-change-transform [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             @php
                 $cardWidth = "w-[85vw] md:w-[45vw] lg:w-[calc((100vw-14rem)/4)] shrink-0 snap-center lg:snap-align-none";
+                $count = 0;
             @endphp            
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=800&auto=format&fit=crop" 
-                title="Produk 1" 
-                category="KATEGORI"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?q=80&w=800&auto=format&fit=crop" 
-                title="Produk 2" 
-                category="KATEGORI"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1544457070-4cd773b4d71e?q=80&w=800&auto=format&fit=crop" 
-                title="Produk 3" 
-                category="KATEGORI"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=800&auto=format&fit=crop" 
-                title="Produk 4" 
-                category="KATEGORI"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1505843490538-5133c6c7d0e1?q=80&w=800&auto=format&fit=crop" 
-                title="Produk 5" 
-                category="KATEGORI"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=800&auto=format&fit=crop" 
-                title="Produk 6" 
-                category="KATEGORI"
-                :href="route('works.maintenance')" 
-            />
+            @foreach($catalogProducts as $product)
+                @php $count++; @endphp
+                <x-work-card 
+                    class="{{ $cardWidth }}"
+                    image="{{ $product->image ? (str_starts_with($product->image, 'http') ? $product->image : asset('storage/' . $product->image)) : 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=800&auto=format&fit=crop' }}" 
+                    title="{{ $product->name }}" 
+                    category="{{ strtoupper($product->subCategory->name ?? 'PRODUK') }}"
+                    :href="route('works.maintenance')" 
+                />
+            @endforeach
+
+            @for ($i = $count; $i < 6; $i++)
+                <x-work-card 
+                    class="{{ $cardWidth }} opacity-50 grayscale"
+                    image="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=800&auto=format&fit=crop" 
+                    title="Segera Hadir" 
+                    category="PRODUK BARU"
+                    :href="'#'" 
+                />
+            @endfor
         </div>
     </div>
 </section>

@@ -14,49 +14,28 @@
         <div id="works-track" class="flex gap-6 lg:gap-8 px-8 md:px-16 w-full lg:w-max overflow-x-auto lg:overflow-visible snap-x snap-mandatory lg:snap-none lg:will-change-transform [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             @php
                 $cardWidth = "w-[85vw] md:w-[45vw] lg:w-[calc((100vw-14rem)/4)] shrink-0 snap-center lg:snap-align-none";
+                $countKarya = 0;
             @endphp            
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 
-                title="Bumame" 
-                category="WEBSITE"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1621619856624-42fd193a0661?q=80&w=800&auto=format&fit=crop" 
-                title="Extra Joss" 
-                category="BRANDING"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1627393100177-b4297e5ea504?q=80&w=800&auto=format&fit=crop" 
-                title="Gioi" 
-                category="BRANDING"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop" 
-                title="Vivere" 
-                category="WEBSITE, GRAFIS"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1583339824000-60b138676a06?q=80&w=800&auto=format&fit=crop" 
-                title="Kopi Kenangan" 
-                category="BRANDING, KEMASAN"
-                :href="route('works.maintenance')" 
-            />
-            <x-work-card 
-                class="{{ $cardWidth }}"
-                image="https://images.unsplash.com/photo-1561070791-2526d30994b5?q=80&w=800&auto=format&fit=crop" 
-                title="Gojek Global" 
-                category="DESAIN APLIKASI, UI/UX"
-                :href="route('works.maintenance')" 
-            />
+            @foreach($karyaProducts as $karya)
+                @php $countKarya++; @endphp
+                <x-work-card 
+                    class="{{ $cardWidth }}"
+                    image="{{ $karya->image ? (str_starts_with($karya->image, 'http') ? $karya->image : asset('storage/' . $karya->image)) : 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop' }}" 
+                    title="{{ $karya->name }}" 
+                    category="{{ strtoupper($karya->subCategory->name ?? 'KARYA') }}"
+                    :href="route('works.maintenance')" 
+                />
+            @endforeach
+            
+            @for ($i = $countKarya; $i < 6; $i++)
+                <x-work-card 
+                    class="{{ $cardWidth }} opacity-50 grayscale"
+                    image="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop" 
+                    title="Segera Hadir" 
+                    category="KARYA TERBARU"
+                    :href="'#'" 
+                />
+            @endfor
         </div>
     </div>
 </section>
