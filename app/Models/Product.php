@@ -11,6 +11,7 @@ class Product extends Model
         'slug',
         'subcategory_id',
         'description',
+        'image',
     ];
 
     public function subCategory()
