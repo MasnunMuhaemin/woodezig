@@ -20,9 +20,11 @@ class SubCategoryResource extends Resource
 {
     protected static ?string $model = SubCategory::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::RectangleStack;
 
     protected static ?string $recordTitleAttribute = 'name';
+
+    protected static ?string $pluralModelLabel = 'Sub Kategori';
 
     public static function form(Schema $schema): Schema
     {
