@@ -15,10 +15,16 @@ class UsersTable
         return $table
             ->columns([
                  TextColumn::make('name')
+                    ->label('Nama')
                     ->searchable(),
                 TextColumn::make('email')
+                    ->label('Email')
                     ->searchable(),
                 TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
+                    ->dateTime(),
+                TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada')
                     ->dateTime(),
             ])
             ->filters([

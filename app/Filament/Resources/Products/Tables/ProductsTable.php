@@ -17,27 +17,30 @@ class ProductsTable
         return $table
             ->columns([
                 TextColumn::make('name')
+                    ->label('Nama')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('slug')
+                    ->label('Slug')
                     ->searchable(),
                 TextColumn::make('subCategory.name')
-                    ->label('Sub Category')
+                    ->label('Sub Kategori')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('subCategory.category.name')
-                    ->label('Category')
+                    ->label('Kategori')
                     ->sortable()
                     ->searchable(),
                 ImageColumn::make('image')
+                    ->label('Gambar')
                     ->width(200)
                     ->height(200),
                 TextColumn::make('created_at')
-                    ->label('Created At')
+                    ->label('Dibuat Pada')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
                 TextColumn::make('updated_at')
-                    ->label('Updated At')
+                    ->label('Diperbarui Pada')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])

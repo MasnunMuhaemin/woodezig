@@ -16,14 +16,19 @@ class SubCategoriesTable
         return $table
             ->columns([
                 TextColumn::make('category.name')
-                    ->label('Category')
+                    ->label('Kategori')
                     ->sortable()
                     ->searchable(),
                 TextColumn::make('name')
-                    ->label('Sub Category')
+                    ->label('Sub Kategori')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
+                    ->dateTime('d M Y H:i')
+                    ->sortable(),
+                TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])

@@ -19,11 +19,11 @@ class CategoriesTable
                     ->label('Nama Kategori')
                     ->searchable(),
                 TextColumn::make('created_at')
-                    ->label('Dibuat')
+                    ->label('Dibuat Pada')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
                 TextColumn::make('updated_at')
-                    ->label('Diupdate')
+                    ->label('Diperbarui Pada')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
             ])
