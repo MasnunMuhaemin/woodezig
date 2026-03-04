@@ -9,6 +9,7 @@ use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\SubCategory;
+use Filament\Forms\Components\FileUpload;
 
 class ProductForm
 {
@@ -44,6 +45,10 @@ class ProductForm
                     ->required(),
                 Textarea::make('description')
                     ->rows(4)
+                    ->required(),
+                FileUpload::make('image')
+                    ->label('Image')
+                    ->directory('products')
                     ->required(),
             ]);
     }
