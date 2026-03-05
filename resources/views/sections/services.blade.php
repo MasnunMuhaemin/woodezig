@@ -1,7 +1,7 @@
 <section class="py-24 px-8 md:px-16 bg-[#060606] relative border-t border-white/5" id="services">
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">        
         <div class="lg:col-span-2 pt-4">
-            <span class="text-[#f7941d] text-lg tracking-[2px] font-medium uppercase">
+            <span class="text-primary text-lg tracking-[2px] font-medium uppercase">
                 LAYANAN
             </span>
         </div>
@@ -19,10 +19,6 @@
                 <img src="https://images.unsplash.com/photo-1529336953121-ad5a0d43d0d2?q=80&w=800"
                      data-item="desain"
                      class="service-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700">
-                <img src="https://images.unsplash.com/photo-1588072432836-e10032774350?q=80&w=800"
-                     data-item="coloring"
-                     class="service-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700">
-
                 <img src="https://images.unsplash.com/photo-1603575448360-153f093fd0c1?q=80&w=800"
                      data-item="anak"
                      class="service-img absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-700">
@@ -53,8 +49,6 @@
                 </p>
 
                 <div class="space-y-2">
-                    <h3 class="service-item text-4xl md:text-6xl lg:text-[64px] text-white cursor-pointer transition duration-500"
-                        data-item="coloring">Coloring & Activity Kit</h3>
 
                     <h3 class="service-item text-4xl md:text-6xl lg:text-[64px] text-white cursor-pointer transition duration-500"
                         data-item="anak">Produk Kreatif Anak</h3>

@@ -1,7 +1,7 @@
 <section id="works-section" class="relative bg-[#060606] border-t border-white/5 h-auto lg:h-[300vh] py-16 lg:py-0">
     <div class="lg:sticky lg:top-0 lg:h-screen w-full flex flex-col justify-center overflow-hidden">
         <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-16 gap-4 px-8 md:px-16 w-full shrink-0">
-            <h2 class="works-section-title text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tighter leading-none uppercase">
+            <h2 class="works-section-title text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold leading-tight py-2 uppercase">
                 KARYA
             </h2>           
             <a href="{{ route('works.maintenance') }}" class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-primary transition-colors duration-300">

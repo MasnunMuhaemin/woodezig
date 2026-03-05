@@ -1,7 +1,7 @@
 <section class="py-24 px-8 md:px-16 bg-[#060606] relative border-t border-white/5 font-sans" id="clients">
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
-        <h2 class="text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tighter leading-none uppercase">
-            KLIEN KAMI
+        <h2 class="text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold tracking-tighter leading-tight py-2 uppercase">
+            KLIEN & PARTNER
         </h2>
         <div class="text-white/60 text-sm tracking-[2px] uppercase">
             Telah dipercaya oleh

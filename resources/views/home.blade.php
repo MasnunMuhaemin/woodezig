@@ -8,7 +8,7 @@
         <x-hero />
     </div>
 </div>
-<div class="relative z-[20] bg-[#060606] mb-[100vh]">
+<div class="relative z-[20] bg-[#060606] lg:mb-[100vh]">
     @include('sections.about')
     @include('sections.products')
     @include('sections.works')
@@ -17,7 +17,7 @@
     @include('sections.clients')
     @include('sections.journal')
 </div>
-<div id="contact" class="fixed bottom-0 left-0 z-[10]">
+<div id="contact" class="relative lg:fixed lg:bottom-0 lg:left-0 w-full z-[30] lg:z-[10]">
     @include('sections.contact')
 </div>
 
