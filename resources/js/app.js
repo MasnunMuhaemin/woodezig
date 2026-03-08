@@ -25,13 +25,46 @@ window.lenis = lenis;
 // ===============================
 document.addEventListener("DOMContentLoaded", () => {
     // ===============================
-    // FIX ANCHOR SCROLL
+    // MOBILE MENU
     // ===============================
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const body = document.body;
 
-            const targetId = this.getAttribute("href");
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("opacity-0");
+            mobileMenu.classList.toggle("opacity-100");
+            mobileMenu.classList.toggle("invisible");
+            body.classList.toggle("overflow-hidden");
+        });
+
+        document.querySelectorAll(".mobile-link").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("opacity-0", "invisible");
+                mobileMenu.classList.remove("opacity-100");
+                body.classList.remove("overflow-hidden");
+            });
+        });
+    }
+
+    // ===============================
+    // FIX ANCHOR SCROLL (SPA + MULTI PAGE)
+    // ===============================
+    document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            const url = new URL(this.href);
+            const currentPath = window.location.pathname;
+
+            // jika beda page → biarkan pindah page
+            if (url.pathname !== currentPath) return;
+
+            const targetId = url.hash;
+            const targetElement = document.querySelector(targetId);
+
+            if (!targetElement) return;
+
+            e.preventDefault();
 
             if (targetId === "#contact") {
                 lenis.scrollTo(document.body.scrollHeight, {
@@ -47,14 +80,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            const targetElement = document.querySelector(targetId);
-
-            if (targetElement) {
-                lenis.scrollTo(targetElement, {
-                    offset: -80,
-                    duration: 1.2,
-                });
-            }
+            lenis.scrollTo(targetElement, {
+                offset: -80,
+                duration: 1.2,
+            });
         });
     });
 
@@ -84,9 +113,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
         words.forEach((word) => {
             const span = document.createElement("span");
+
             span.innerText = word + " ";
             span.className =
                 "text-[#333] transition-colors duration-[3000ms] ease-[cubic-bezier(0.1,0.9,0.2,1)]";
+
             textElement.appendChild(span);
         });
 
@@ -100,6 +131,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const endY = windowHeight * 0.15;
 
             let progress = (startY - containerRect.top) / (startY - endY);
+
             progress = Math.max(0, Math.min(1, progress));
 
             const totalWords = spans.length;
@@ -132,29 +164,30 @@ document.addEventListener("DOMContentLoaded", () => {
     ];
 
     horizontalSections.forEach(({ section, track }) => {
-        if (section && track) {
-            lenis.on("scroll", () => {
-                if (window.innerWidth < 1024) {
-                    track.style.transform = "none";
-                    return;
-                }
+        if (!section || !track) return;
 
-                const rect = section.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
+        lenis.on("scroll", () => {
+            if (window.innerWidth < 1024) {
+                track.style.transform = "none";
+                return;
+            }
 
-                const maxScrollDist = section.offsetHeight - viewportHeight;
-                const maxTranslateDist = track.scrollWidth - window.innerWidth;
+            const rect = section.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
 
-                if (maxTranslateDist <= 0) return;
+            const maxScrollDist = section.offsetHeight - viewportHeight;
+            const maxTranslateDist = track.scrollWidth - window.innerWidth;
 
-                let progress = -rect.top / maxScrollDist;
-                progress = Math.max(0, Math.min(1, progress));
+            if (maxTranslateDist <= 0) return;
 
-                const translateX = progress * maxTranslateDist;
+            let progress = -rect.top / maxScrollDist;
 
-                track.style.transform = `translateX(-${translateX}px)`;
-            });
-        }
+            progress = Math.max(0, Math.min(1, progress));
+
+            const translateX = progress * maxTranslateDist;
+
+            track.style.transform = `translateX(-${translateX}px)`;
+        });
     });
 
     // ===============================
@@ -205,15 +238,6 @@ document.addEventListener("DOMContentLoaded", () => {
             setActiveText(index);
         }
 
-        function showImageById(id) {
-            serviceImages.forEach((img, i) => {
-                if (img.dataset.item === id) {
-                    currentIndex = i;
-                    showImageByIndex(i);
-                }
-            });
-        }
-
         function startAutoLoop() {
             clearInterval(autoLoopInterval);
 
@@ -225,13 +249,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000);
         }
 
-        serviceItems.forEach((item) => {
+        serviceItems.forEach((item, index) => {
             item.addEventListener("mouseenter", () => {
                 isHovering = true;
                 clearInterval(autoLoopInterval);
 
-                const id = item.dataset.item;
-                showImageById(id);
+                showImageByIndex(index);
             });
 
             item.addEventListener("mouseleave", () => {
@@ -244,62 +267,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showImageByIndex(0);
         startAutoLoop();
     }
-
-    // ===============================
-    // SECTION TITLE REVEAL
-    // ===============================
-    const sectionTitles = document.querySelectorAll(
-        ".journal-section-title, .works-section-title, .products-section-title",
-    );
-
-    sectionTitles.forEach((title) => {
-        const text = title.innerText.trim();
-        title.innerHTML = "";
-
-        [...text].forEach((char) => {
-            const wrapper = document.createElement("span");
-            wrapper.style.display = "inline-block";
-            wrapper.style.overflow = "hidden";
-
-            const innerChar = document.createElement("span");
-            innerChar.innerText = char === " " ? "\u00A0" : char;
-
-            innerChar.style.display = "inline-block";
-            innerChar.style.transform = "translateY(110%)";
-            innerChar.style.transition =
-                "transform 1.2s cubic-bezier(0.16,1,0.3,1)";
-
-            innerChar.className = "reveal-section-char";
-
-            wrapper.appendChild(innerChar);
-            title.appendChild(wrapper);
-        });
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const chars = entry.target.querySelectorAll(
-                        ".reveal-section-char",
-                    );
-
-                    if (entry.isIntersecting) {
-                        chars.forEach((char, index) => {
-                            setTimeout(() => {
-                                char.style.transform = "translateY(0)";
-                            }, index * 40);
-                        });
-                    } else {
-                        chars.forEach((char) => {
-                            char.style.transform = "translateY(110%)";
-                        });
-                    }
-                });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-        );
-
-        observer.observe(title);
-    });
 
     // ===============================
     // NAVBAR SCROLL EFFECT
@@ -334,7 +301,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const loader = document.getElementById("page-loader");
 
     if (loader) {
-        // pastikan loader terlihat
         loader.style.opacity = "1";
         loader.style.display = "flex";
 
