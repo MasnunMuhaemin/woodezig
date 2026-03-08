@@ -6,7 +6,7 @@
             <h2 class="products-section-title text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold  leading-tight py-2 uppercase">
                 PRODUK
             </h2>           
-            <a href="{{ route('works.maintenance') }}" class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-primary transition-colors duration-300">
+            <a href="{{ route('catalog.index') }}" class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-primary transition-colors duration-300">
                 SEMUA PRODUK 
                 <svg class="w-4 h-4 transform group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>

@@ -14,10 +14,10 @@ class SubcategorySeeder extends Seeder
     public function run(): void
     {
         DB::table('subcategories')->insert([
-            ['category_id' => 1, 'name' => 'Plakat'],
-            ['category_id' => 1, 'name' => 'Seminar Kit'],
-            ['category_id' => 2, 'name' => 'Desain'],
-            ['category_id' => 2, 'name' => 'Event'],
+            ['category_id' => 1, 'name' => 'Plakat', 'slug' => 'plakat'],
+            ['category_id' => 1, 'name' => 'Seminar Kit', 'slug' => 'seminar-kit'],
+            ['category_id' => 2, 'name' => 'Desain', 'slug' => 'desain'],
+            ['category_id' => 2, 'name' => 'Event', 'slug' => 'event'],
         ]);
     }
 }

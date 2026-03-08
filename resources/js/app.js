@@ -1,8 +1,79 @@
 import "./bootstrap";
+import Lenis from "@studio-freight/lenis";
 
+// ===============================
+// INIT LENIS
+// ===============================
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1.1,
+    touchMultiplier: 2,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+window.lenis = lenis;
+
+// ===============================
+// DOM READY
+// ===============================
 document.addEventListener("DOMContentLoaded", () => {
     // ===============================
-    // REVEAL TEXT SCROLL (SYNC LENIS)
+    // FIX ANCHOR SCROLL
+    // ===============================
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+
+            const targetId = this.getAttribute("href");
+
+            if (targetId === "#contact") {
+                lenis.scrollTo(document.body.scrollHeight, {
+                    duration: 1.2,
+                });
+                return;
+            }
+
+            if (targetId === "#home") {
+                lenis.scrollTo(0, {
+                    duration: 1.2,
+                });
+                return;
+            }
+
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+                lenis.scrollTo(targetElement, {
+                    offset: -80,
+                    duration: 1.2,
+                });
+            }
+        });
+    });
+
+    // ===============================
+    // HERO FADE OUT
+    // ===============================
+    const heroContent = document.getElementById("hero-content");
+
+    lenis.on("scroll", ({ scroll }) => {
+        const vh = window.innerHeight;
+
+        if (heroContent) {
+            const progress = Math.min(scroll / vh, 1);
+            heroContent.style.opacity = 1 - progress;
+        }
+    });
+
+    // ===============================
+    // REVEAL TEXT SCROLL
     // ===============================
     const textElement = document.getElementById("reveal-text");
 
@@ -21,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const spans = textElement.querySelectorAll("span");
 
-        window.lenis?.on("scroll", ({ scroll }) => {
+        lenis.on("scroll", () => {
             const windowHeight = window.innerHeight;
             const containerRect = textElement.getBoundingClientRect();
 
@@ -47,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===============================
-    // HORIZONTAL SCROLL WORKS & PRODUCTS
+    // HORIZONTAL SCROLL
     // ===============================
     const horizontalSections = [
         {
@@ -62,8 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     horizontalSections.forEach(({ section, track }) => {
         if (section && track) {
-            window.lenis?.on("scroll", () => {
-                // Di mobile, biarkan drag / swipe asli bekerja
+            lenis.on("scroll", () => {
                 if (window.innerWidth < 1024) {
                     track.style.transform = "none";
                     return;
@@ -132,7 +202,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             });
 
-            // Sinkronkan teks dengan gambar
             setActiveText(index);
         }
 
@@ -156,7 +225,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 3000);
         }
 
-        // Hover Events
         serviceItems.forEach((item) => {
             item.addEventListener("mouseenter", () => {
                 isHovering = true;
@@ -173,7 +241,6 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
 
-        // Start pertama kali
         showImageByIndex(0);
         startAutoLoop();
     }
@@ -196,10 +263,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const innerChar = document.createElement("span");
             innerChar.innerText = char === " " ? "\u00A0" : char;
+
             innerChar.style.display = "inline-block";
             innerChar.style.transform = "translateY(110%)";
             innerChar.style.transition =
-                "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
+                "transform 1.2s cubic-bezier(0.16,1,0.3,1)";
+
             innerChar.className = "reveal-section-char";
 
             wrapper.appendChild(innerChar);
@@ -233,69 +302,19 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===============================
-    // JOURNAL TITLE WORD REVEAL
-    // ===============================
-    const journalTitles = document.querySelectorAll(".journal-title");
-
-    journalTitles.forEach((title) => {
-        const text = title.innerText.trim();
-        const words = text.split(/\s+/);
-        title.innerHTML = "";
-
-        words.forEach((word) => {
-            const wrapper = document.createElement("span");
-            wrapper.style.display = "inline-block";
-            wrapper.style.overflow = "hidden";
-
-            const innerWord = document.createElement("span");
-            innerWord.innerText = word + "\u00A0";
-            innerWord.style.display = "inline-block";
-            innerWord.style.transform = "translateY(110%)";
-            innerWord.style.transition =
-                "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
-            innerWord.className = "reveal-word";
-
-            wrapper.appendChild(innerWord);
-            title.appendChild(wrapper);
-        });
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const words = entry.target.querySelectorAll(".reveal-word");
-
-                    if (entry.isIntersecting) {
-                        words.forEach((word, index) => {
-                            setTimeout(() => {
-                                word.style.transform = "translateY(0)";
-                            }, index * 40);
-                        });
-                    } else {
-                        words.forEach((word) => {
-                            word.style.transform = "translateY(110%)";
-                        });
-                    }
-                });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
-        );
-
-        observer.observe(title);
-    });
-
-    // ===============================
-    // NAVBAR SCROLL EFFECT (LENIS)
+    // NAVBAR SCROLL EFFECT
     // ===============================
     const navbar = document.getElementById("navbar");
 
-    if (navbar && window.lenis) {
-        window.lenis.on("scroll", ({ scroll }) => {
+    if (navbar) {
+        lenis.on("scroll", ({ scroll }) => {
             if (scroll > 50) {
                 navbar.classList.add(
                     "bg-black/80",
                     "backdrop-blur-xl",
                     "border-white/10",
                 );
+
                 navbar.classList.remove("bg-transparent", "border-transparent");
             } else {
                 navbar.classList.remove(
@@ -303,8 +322,30 @@ document.addEventListener("DOMContentLoaded", () => {
                     "backdrop-blur-xl",
                     "border-white/10",
                 );
+
                 navbar.classList.add("bg-transparent", "border-transparent");
             }
+        });
+    }
+
+    // ===============================
+    // PAGE LOADER
+    // ===============================
+    const loader = document.getElementById("page-loader");
+
+    if (loader) {
+        // pastikan loader terlihat
+        loader.style.opacity = "1";
+        loader.style.display = "flex";
+
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                loader.style.opacity = "0";
+
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 500);
+            }, 300);
         });
     }
 });

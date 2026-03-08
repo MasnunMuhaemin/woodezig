@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('navbar')
-{{-- Kosongkan navbar kalau mau --}}
 @endsection
 
 @section('content')
