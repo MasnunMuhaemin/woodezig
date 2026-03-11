@@ -30,4 +30,13 @@ class CatalogController extends Controller
             'subcategory'
         ));
     }
+
+    public function show($slug)
+    {
+        $product = Product::with('subcategory')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        return view('pages.catalog.show', compact('product'));
+    }
 }

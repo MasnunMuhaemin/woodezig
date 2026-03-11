@@ -25,7 +25,8 @@
                     image="{{ $product->image ? (str_starts_with($product->image, 'http') ? $product->image : asset('storage/' . $product->image)) : 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=800&auto=format&fit=crop' }}" 
                     title="{{ $product->name }}" 
                     category="{{ strtoupper($product->subCategory->name ?? 'PRODUK') }}"
-                    :href="route('works.maintenance')" 
+                    :tags="$product->tags ? explode(',', $product->tags) : []"
+                    :href="route('catalog.show', $product->slug)" 
                 />
             @endforeach
 

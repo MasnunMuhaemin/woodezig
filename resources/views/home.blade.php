@@ -8,6 +8,7 @@
         <x-hero />
     </div>
 </div>
+
 <div class="relative z-[20] bg-[#060606] lg:mb-[100vh]">
     @include('sections.about')
     @include('sections.products')
@@ -17,8 +18,11 @@
     @include('sections.clients')
     @include('sections.journal')
 </div>
+
+@endsection
+
+@section('footer')
 <div id="contact" class="relative lg:fixed lg:bottom-0 lg:left-0 w-full z-[30] lg:z-[10]">
     @include('sections.contact')
 </div>
-
 @endsection

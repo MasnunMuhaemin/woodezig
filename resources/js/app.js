@@ -88,6 +88,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // ===============================
+    // SCROLL HASH AFTER PAGE LOAD
+    // (FIX MULTI PAGE #CONTACT)
+    // ===============================
+    if (window.location.hash) {
+        const targetId = window.location.hash;
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    if (targetId === "#contact") {
+                        lenis.scrollTo(document.body.scrollHeight, {
+                            duration: 1.2,
+                        });
+                        return;
+                    }
+
+                    if (targetId === "#home") {
+                        lenis.scrollTo(0, {
+                            duration: 1.2,
+                        });
+                        return;
+                    }
+
+                    lenis.scrollTo(targetElement, {
+                        offset: -80,
+                        duration: 1.2,
+                    });
+                }, 300);
+            });
+        }
+    }
+
+    // ===============================
     // HERO FADE OUT
     // ===============================
     const heroContent = document.getElementById("hero-content");
@@ -109,6 +143,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (textElement) {
         const textArea = textElement.innerText.trim();
         const words = textArea.split(/\s+/);
+
         textElement.innerHTML = "";
 
         words.forEach((word) => {
@@ -189,84 +224,6 @@ document.addEventListener("DOMContentLoaded", () => {
             track.style.transform = `translateX(-${translateX}px)`;
         });
     });
-
-    // ===============================
-    // SERVICES IMAGE HOVER + AUTO LOOP
-    // ===============================
-    const serviceItems = document.querySelectorAll(".service-item");
-    const serviceImages = document.querySelectorAll(".service-img");
-
-    if (serviceItems.length && serviceImages.length) {
-        let currentIndex = 0;
-        let autoLoopInterval;
-        let isHovering = false;
-
-        function resetTextToDefault() {
-            serviceItems.forEach((el) => {
-                el.classList.remove("text-white/30", "text-primary");
-                el.classList.add("text-white");
-            });
-        }
-
-        function setActiveText(index) {
-            serviceItems.forEach((el, i) => {
-                el.classList.remove(
-                    "text-white",
-                    "text-white/30",
-                    "text-primary",
-                );
-
-                if (i === index) {
-                    el.classList.add("text-primary");
-                } else {
-                    el.classList.add("text-white/30");
-                }
-            });
-        }
-
-        function showImageByIndex(index) {
-            serviceImages.forEach((img, i) => {
-                if (i === index) {
-                    img.classList.remove("opacity-0");
-                    img.classList.add("opacity-100");
-                } else {
-                    img.classList.remove("opacity-100");
-                    img.classList.add("opacity-0");
-                }
-            });
-
-            setActiveText(index);
-        }
-
-        function startAutoLoop() {
-            clearInterval(autoLoopInterval);
-
-            autoLoopInterval = setInterval(() => {
-                if (!isHovering) {
-                    currentIndex = (currentIndex + 1) % serviceImages.length;
-                    showImageByIndex(currentIndex);
-                }
-            }, 3000);
-        }
-
-        serviceItems.forEach((item, index) => {
-            item.addEventListener("mouseenter", () => {
-                isHovering = true;
-                clearInterval(autoLoopInterval);
-
-                showImageByIndex(index);
-            });
-
-            item.addEventListener("mouseleave", () => {
-                isHovering = false;
-                resetTextToDefault();
-                startAutoLoop();
-            });
-        });
-
-        showImageByIndex(0);
-        startAutoLoop();
-    }
 
     // ===============================
     // NAVBAR SCROLL EFFECT

@@ -2,11 +2,12 @@
     'image', 
     'title', 
     'category',
+    'tags' => [],
+    'href' => '#',
     'class' => ''
 ])
-
-<a href="{{ route('works.maintenance') }}" 
-   class="flex flex-col group cursor-pointer shrink-0 {{ $class }}">    
+<a href="{{ $href }}" 
+   class="flex flex-col group cursor-pointer shrink-0 {{ $class }}">
     <div class="w-full aspect-square overflow-hidden mb-4 md:mb-5 relative bg-[#111]">
         <img src="{{ $image }}" 
              alt="{{ $title }}"
@@ -17,7 +18,16 @@
                group-hover:text-white/80 transition-colors duration-300">
         {{ $title }}
     </h3>
-    <p class="text-[#777] text-[10px] font-semibold tracking-[1.5px] uppercase">
+    <p class="text-[#777] text-[10px] font-semibold tracking-[1.5px] uppercase mb-2">
         {{ $category }}
     </p>
+    @if(!empty($tags))
+        <div class="flex flex-wrap gap-2 mt-2">
+            @foreach($tags as $tag)
+                <span class="text-[10px] px-2 py-1 bg-white/10 text-white/70 rounded">
+                    {{ trim($tag) }}
+                </span>
+            @endforeach
+        </div>
+    @endif
 </a>

@@ -11,5 +11,11 @@ Route::get('/works', function () {
     return view('components.maintenance');
 })->name('works.maintenance');
 
-Route::get('/catalog/{subcategory:slug?}', [CatalogController::class, 'index'])
+Route::get('/catalog', [CatalogController::class, 'index'])
     ->name('catalog.index');
+
+Route::get('/catalog/sub/{subcategory:slug}', [CatalogController::class, 'index'])
+    ->name('catalog.subcategory');
+
+Route::get('/catalog/product/{slug}', [CatalogController::class, 'show'])
+    ->name('catalog.show');
