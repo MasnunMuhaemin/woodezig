@@ -25,7 +25,6 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
-            ->registration()
             ->brandName('Woodezig')
             ->colors([
                 'primary' => Color::Amber,

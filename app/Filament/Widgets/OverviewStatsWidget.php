@@ -11,16 +11,21 @@ class OverviewStatsWidget extends BaseWidget
 {
     protected function getStats(): array
     {
+        $catalog = Product::where('subcategory_id', 1)->count();
+        $karya = Product::where('subcategory_id', 2)->count();  
         return [
             Stat::make('Total Artikel', Article::count())
                 ->description('Total artikel yang terdaftar')
                 ->descriptionIcon('heroicon-o-document-text')
                 ->color('primary'),
-
-            Stat::make('Total Produk', Product::count())
-                ->description('Total produk yang terdaftar')
+            Stat::make('Catalog Produk', $catalog)
+                ->description('Total produk catalog')
                 ->descriptionIcon('heroicon-o-archive-box')
                 ->color('primary'),
+            Stat::make('Karya', $karya)
+                ->description('Total karya')
+                ->descriptionIcon('heroicon-o-photo')
+                ->color('success'),
         ];
     }
 }
