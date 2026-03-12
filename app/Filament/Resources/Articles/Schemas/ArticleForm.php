@@ -5,6 +5,7 @@ namespace App\Filament\Resources\Articles\Schemas;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\Repeater;
 use Filament\Schemas\Schema;
 use Illuminate\Support\Str;
 
@@ -26,11 +27,20 @@ class ArticleForm
                 Textarea::make('content')
                     ->required()
                     ->columnSpanFull(),
-                FileUpload::make('image')
-                    ->image()
-                    ->disk('public')
-                    ->required()
-                    ->directory('articles'),
+                Repeater::make('images')
+                    ->relationship('images')
+                    ->schema([
+                        FileUpload::make('image')
+                            ->label('Article Image')
+                            ->disk('public')
+                            ->directory('articles')
+                            ->image()
+                            ->imageEditor()
+                    ])
+                    ->columns(1)
+                    ->addActionLabel('Add Image')
+                    ->reorderable()
+                    ->label('Gallery Gambar'),
             ]);
     }
 }
