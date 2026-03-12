@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use App\Models\Category;
 use App\Models\SubCategory;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Repeater;
 
 class ProductForm
 {
@@ -46,11 +47,21 @@ class ProductForm
                 Textarea::make('description')
                     ->rows(4)
                     ->required(),
-                FileUpload::make('image')
-                    ->label('Image')
-                    ->disk('public')
-                    ->directory('products')
-                    ->required(),
+                Repeater::make('images')
+                    ->relationship('images')
+                    ->schema([
+                        FileUpload::make('image_path')
+                            ->label('Product Image')
+                            ->disk('public')
+                            ->directory('products')
+                            ->image()
+                            ->imageEditor()
+                            ->required(),
+                    ])
+                    ->columns(1)
+                    ->addActionLabel('Add Image')
+                    ->reorderable()
+                    ->label('Gallery Gambar')
             ]);
     }
 }

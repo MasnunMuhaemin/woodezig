@@ -20,7 +20,7 @@
                 @php $countKarya++; @endphp
                 <x-work-card 
                     class="{{ $cardWidth }}"
-                    image="{{ $karya->image ? (str_starts_with($karya->image, 'http') ? $karya->image : asset('storage/' . $karya->image)) : 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=800&auto=format&fit=crop' }}" 
+                    image="{{ $karya->first_image_url }}" 
                     title="{{ $karya->name }}" 
                     category="{{ strtoupper($karya->subCategory->name ?? 'KARYA') }}"
                     :href="route('works.maintenance')" 

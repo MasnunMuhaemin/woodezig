@@ -21,7 +21,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             @foreach($products as $product)
                 <x-work-card 
-                    image="{{ $product->image ? (str_starts_with($product->image, 'http') ? $product->image : asset('storage/' . $product->image)) : 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=800&auto=format&fit=crop' }}" 
+                    image="{{ $product->first_image_url }}" 
                     title="{{ $product->name }}" 
                     category="{{ strtoupper($product->subCategory->name ?? 'PRODUK') }}"
                     :tags="$product->tags ? explode(',', $product->tags) : []"

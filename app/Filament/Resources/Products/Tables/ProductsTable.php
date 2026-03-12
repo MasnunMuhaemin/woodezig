@@ -31,10 +31,12 @@ class ProductsTable
                     ->label('Kategori')
                     ->sortable()
                     ->searchable(),
-                ImageColumn::make('image')
-                    ->label('Gambar')
-                    ->width(200)
-                    ->height(200),
+                ImageColumn::make('images.image_path')
+                    ->label('Gallery')
+                    ->disk('public')
+                    ->stacked()
+                    ->limit(3)
+                    ->circular(),
                 TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->dateTime('d M Y H:i')
