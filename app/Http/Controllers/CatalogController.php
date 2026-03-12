@@ -33,10 +33,9 @@ class CatalogController extends Controller
 
     public function show($slug)
     {
-        $product = Product::with('subcategory')
+        $product = Product::with(['subcategory','images'])
             ->where('slug', $slug)
             ->firstOrFail();
-
         return view('pages.catalog.show', compact('product'));
     }
 }

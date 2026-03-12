@@ -10,13 +10,26 @@
         </span>
     </div>
     {{-- HERO IMAGE --}}
-    <div class="w-full aspect-[16/9] overflow-hidden mb-10 group">
+    <div class="w-full aspect-[16/9] overflow-hidden mb-6 group">
         <img 
-        src="{{ asset('storage/'.$product->image) }}"
-        alt="{{ $product->name }}"
-        class="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-[1.2s] group-hover:scale-105"
+            id="mainImage"
+            src="{{ asset('storage/'.$product->images->first()->image_path) }}"
+            class="w-full h-full object-cover"
         >
     </div>
+
+    {{-- PRODUCT GALLERY --}}
+    @if($product->images->count())
+    <div class="flex gap-4 mb-10 overflow-x-auto">
+        @foreach($product->images as $img)
+            <img 
+                src="{{ asset('storage/'.$img->image_path) }}"
+                onclick="document.getElementById('mainImage').src=this.src"
+                class="w-28 h-16 object-cover rounded-lg cursor-pointer hover:opacity-70 transition"
+            >
+        @endforeach
+    </div>
+    @endif
     {{-- TAGS --}}
     <div class="flex flex-wrap gap-3 mb-8">
         @if($product->tags)
