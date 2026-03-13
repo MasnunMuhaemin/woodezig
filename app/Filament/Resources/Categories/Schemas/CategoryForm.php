@@ -12,7 +12,8 @@ class CategoryForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->label('Nama Kategori')
+                    ->label('Nama Kategori Utama')
+                    ->helperText('Contoh: Katalog Produk, Karya (Works), dsb.')
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),

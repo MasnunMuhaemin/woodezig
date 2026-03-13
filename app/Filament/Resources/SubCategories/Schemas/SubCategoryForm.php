@@ -14,13 +14,15 @@ class SubCategoryForm
         return $schema
             ->components([
                 Select::make('category_id')
-                    ->label('Category')
+                    ->label('Kategori Induk')
+                    ->helperText('Pilih kategori utama untuk sub-kategori ini.')
                     ->relationship('category', 'name')
                     ->searchable()
                     ->preload()
                     ->required(),
                 TextInput::make('name')
-                    ->label('Nama Sub Category')
+                    ->label('Nama Sub-Kategori')
+                    ->helperText('Contoh: Chairs, Tables, Decoration, dsb.')
                     ->required()
                     ->live(onBlur: true)
                     ->afterStateUpdated(function ($state, callable $set, callable $get) {
@@ -30,8 +32,8 @@ class SubCategoryForm
                     })
                     ->maxLength(255),
                 TextInput::make('slug')
-                    ->label('Slug')
-                    ->helperText('Slug bisa otomatis dari nama atau diubah manual.')
+                    ->label('URL Slug')
+                    ->helperText('Slug otomatis dibuat dari nama untuk keperluan URL.')
                     ->unique(ignoreRecord: true)
                     ->required()
                     ->maxLength(255),
