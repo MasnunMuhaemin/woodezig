@@ -8,7 +8,7 @@
                     <span>Kembali ke Beranda</span>
                 </a>
                 <h2 class="text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold leading-tight py-2 uppercase">
-                    CATALOG
+                    Katalog Produk
                 </h2>
             </div>
         </div>
