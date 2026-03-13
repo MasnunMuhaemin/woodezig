@@ -8,7 +8,7 @@
                     <div class="w-full shrink-0 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
                         {{-- Image Side --}}
                         <div class="relative flex justify-center items-center">
-                            <div class="w-full aspect-square md:aspect-[4/3] lg:aspect-square overflow-hidden rounded-2xl shadow-2xl">
+                            <div class="w-full md:aspect-[4/3] overflow-hidden">
                                 <img 
                                     src="{{ $product->first_image_url }}" 
                                     alt="{{ $product->name }}"
