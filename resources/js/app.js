@@ -121,6 +121,97 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+     // ===============================
+    // SERVICES IMAGE HOVER + AUTO LOOP
+    // ===============================
+    const serviceItems = document.querySelectorAll(".service-item");
+    const serviceImages = document.querySelectorAll(".service-img");
+
+    if (serviceItems.length && serviceImages.length) {
+        let currentIndex = 0;
+        let autoLoopInterval;
+        let isHovering = false;
+
+        function resetTextToDefault() {
+            serviceItems.forEach((el) => {
+                el.classList.remove("text-white/30", "text-primary");
+                el.classList.add("text-white");
+            });
+        }
+
+        function setActiveText(index) {
+            serviceItems.forEach((el, i) => {
+                el.classList.remove(
+                    "text-white",
+                    "text-white/30",
+                    "text-primary",
+                );
+
+                if (i === index) {
+                    el.classList.add("text-primary");
+                } else {
+                    el.classList.add("text-white/30");
+                }
+            });
+        }
+
+        function showImageByIndex(index) {
+            serviceImages.forEach((img, i) => {
+                if (i === index) {
+                    img.classList.remove("opacity-0");
+                    img.classList.add("opacity-100");
+                } else {
+                    img.classList.remove("opacity-100");
+                    img.classList.add("opacity-0");
+                }
+            });
+
+            // Sinkronkan teks dengan gambar
+            setActiveText(index);
+        }
+
+        function showImageById(id) {
+            serviceImages.forEach((img, i) => {
+                if (img.dataset.item === id) {
+                    currentIndex = i;
+                    showImageByIndex(i);
+                }
+            });
+        }
+
+        function startAutoLoop() {
+            clearInterval(autoLoopInterval);
+
+            autoLoopInterval = setInterval(() => {
+                if (!isHovering) {
+                    currentIndex = (currentIndex + 1) % serviceImages.length;
+                    showImageByIndex(currentIndex);
+                }
+            }, 3000);
+        }
+
+        // Hover Events
+        serviceItems.forEach((item) => {
+            item.addEventListener("mouseenter", () => {
+                isHovering = true;
+                clearInterval(autoLoopInterval);
+
+                const id = item.dataset.item;
+                showImageById(id);
+            });
+
+            item.addEventListener("mouseleave", () => {
+                isHovering = false;
+                resetTextToDefault();
+                startAutoLoop();
+            });
+        });
+
+        // Start pertama kali
+        showImageByIndex(0);
+        startAutoLoop();
+    }
+
     // ===============================
     // HERO FADE OUT
     // ===============================
