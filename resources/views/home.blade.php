@@ -13,6 +13,7 @@
     @include('sections.about')
     @include('sections.products')
     @include('sections.works')
+    @include('sections.featured_products')
     @include('sections.services')
     @include('sections.testimonials')
     <!-- @include('sections.clients') -->

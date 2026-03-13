@@ -29,9 +29,19 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
+        // Ambil produk untuk slider (produk pilihan/unggulan)
+        $featuredProducts = Product::with('images')
+            ->whereHas('subCategory.category', function ($query) {
+                $query->where('name', 'like', '%catalog%')
+                      ->orWhere('name', 'like', '%produk%');
+            })
+            ->latest()
+            ->take(5)
+            ->get();
+
         // Ambil 3 artikel terbaru
         $articles = Article::latest()->take(3)->get();
 
-        return view('home', compact('catalogProducts', 'karyaProducts', 'articles'));
+        return view('home', compact('catalogProducts', 'karyaProducts', 'articles', 'featuredProducts'));
     }
 }

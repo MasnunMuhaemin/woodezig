@@ -362,4 +362,69 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 300);
         });
     }
+    // ===============================
+    // FEATURED PRODUCTS CAROUSEL
+    // ===============================
+    const featuredTrack = document.getElementById('carousel-track');
+    const featuredPrevBtn = document.getElementById('carousel-prev');
+    const featuredNextBtn = document.getElementById('carousel-next');
+    const featuredItems = featuredTrack ? featuredTrack.children : [];
+    
+    if (featuredTrack && featuredItems.length > 1) {
+        let featuredIndex = 0;
+
+        function updateFeaturedCarousel() {
+            featuredTrack.style.transform = `translateX(-${featuredIndex * 100}%)`;
+        }
+
+        featuredNextBtn?.addEventListener('click', () => {
+            featuredIndex = (featuredIndex + 1) % featuredItems.length;
+            updateFeaturedCarousel();
+        });
+
+        featuredPrevBtn?.addEventListener('click', () => {
+            featuredIndex = (featuredIndex - 1 + featuredItems.length) % featuredItems.length;
+            updateFeaturedCarousel();
+        });
+        
+        // Touch events for mobile
+        let featuredTouchStartX = 0;
+        let featuredTouchEndX = 0;
+
+        featuredTrack.addEventListener('touchstart', e => {
+            featuredTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        featuredTrack.addEventListener('touchend', e => {
+            featuredTouchEndX = e.changedTouches[0].screenX;
+            handleFeaturedGesture();
+        }, { passive: true });
+
+        function handleFeaturedGesture() {
+            const swipeDistance = featuredTouchEndX - featuredTouchStartX;
+            if (swipeDistance < -50) {
+                // Swipe Left - Next
+                featuredIndex = (featuredIndex + 1) % featuredItems.length;
+                updateFeaturedCarousel();
+            } else if (swipeDistance > 50) {
+                // Swipe Right - Prev
+                featuredIndex = (featuredIndex - 1 + featuredItems.length) % featuredItems.length;
+                updateFeaturedCarousel();
+            }
+        }
+        
+        // Auto play
+        let featuredAutoPlay = setInterval(() => {
+            featuredIndex = (featuredIndex + 1) % featuredItems.length;
+            updateFeaturedCarousel();
+        }, 8000);
+        
+        featuredTrack.addEventListener('mouseenter', () => clearInterval(featuredAutoPlay));
+        featuredTrack.addEventListener('mouseleave', () => {
+            featuredAutoPlay = setInterval(() => {
+                featuredIndex = (featuredIndex + 1) % featuredItems.length;
+                updateFeaturedCarousel();
+            }, 8000);
+        });
+    }
 });
