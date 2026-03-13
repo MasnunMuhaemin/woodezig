@@ -35,7 +35,11 @@ class ArticleForm
                             ->disk('public')
                             ->directory('articles')
                             ->image()
-                            ->imageEditor()
+                            ->imageEditor(),
+                        Textarea::make('description')
+                            ->label('Penjelasan Gambar')
+                            ->rows(3)
+                            ->columnSpanFull(),
                     ])
                     ->columns(1)
                     ->addActionLabel('Add Image')

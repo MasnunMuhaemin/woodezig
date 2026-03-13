@@ -8,7 +8,8 @@ class ArticleImage extends Model
 {
     protected $fillable = [
         'article_id',
-        'image'
+        'image',
+        'description'
     ];
 
     public function article()

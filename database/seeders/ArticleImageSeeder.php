@@ -18,6 +18,7 @@ class ArticleImageSeeder extends Seeder
                 ArticleImage::create([
                     'article_id' => $article->id,
                     'image' => 'articles/sample-'.$i.'.jpg',
+                    'description' => 'Ini adalah penjelasan detail untuk gambar ke-'.$i.' dari artikel '.$article->title.'. Desain yang elegan menggabungkan fungsionalitas dan estetika dalam setiap detailnya.',
                 ]);
             }
 

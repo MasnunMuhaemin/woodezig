@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,6 +29,9 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        return view('home', compact('catalogProducts', 'karyaProducts'));
+        // Ambil 3 artikel terbaru
+        $articles = Article::latest()->take(3)->get();
+
+        return view('home', compact('catalogProducts', 'karyaProducts', 'articles'));
     }
 }

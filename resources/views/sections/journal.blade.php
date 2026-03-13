@@ -1,9 +1,9 @@
 <section class="py-24 px-8 md:px-16 bg-[#060606] relative border-t border-white/5 font-sans" id="journal">    
     <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
         <h2 class="journal-section-title text-primary text-4xl md:text-6xl lg:text-7xl font-sans font-bold leading-tight py-2 uppercase">
-            ARTIKEL
+            Artikel
         </h2>
-        <a href="{{ route('works.maintenance') }}" 
+        <a href="{{ route('article.index') }}" 
            class="group flex items-center gap-3 text-white text-[13px] font-sans tracking-[2px] uppercase no-underline pb-2 border-b border-white/20 hover:border-primary transition-colors duration-300">
             SEMUA ARTIKEL 
             <svg class="w-4 h-4 transform group-hover:translate-x-1 group-hover:text-primary transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -12,30 +12,20 @@
         </a>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-5 gap-12 lg:gap-8">
-        <div class="lg:col-span-3">
-            <x-journal-card 
-                :isLarge="true"
-                image="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop"
-                date="January 8, 2026"
-                title="Keunggulan Jasa Pembuatan Website Custom CMS yang Tidak Dimiliki WordPress"
-                :href="route('works.maintenance')" 
-            />
-        </div>
-        <div class="lg:col-span-1">
-            <x-journal-card 
-                image="https://images.unsplash.com/photo-1557838923-2985c318be48?q=80&w=800&auto=format&fit=crop"
-                date="June 8, 2025"
-                title="Apa itu Rebranding? Strategi Jitu Mengubah Citra Bisnis Anda"
-                :href="route('works.maintenance')" 
-            />
-        </div>
-        <div class="lg:col-span-1">
-            <x-journal-card 
-                image="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?q=80&w=800&auto=format&fit=crop"
-                date="February 13, 2025"
-                title="10 Vital Components of an Ideal Company Profile Design"
-                :href="route('works.maintenance')" 
-            />
-        </div>
+        @forelse($articles as $article)
+            <div class="{{ $loop->first ? 'lg:col-span-3' : 'lg:col-span-1' }}">
+                <x-journal-card 
+                    :isLarge="$loop->first"
+                    :image="$article->first_image_url"
+                    :date="$article->created_at->translatedFormat('d F Y')"
+                    :title="$article->title"
+                    :href="route('article.show', $article->slug)" 
+                />
+            </div>
+        @empty
+            <div class="lg:col-span-5 text-center py-10 opacity-50 italic">
+                Segera hadir artikel menarik lainnya.
+            </div>
+        @endforelse
     </div>
 </section>

@@ -15,7 +15,7 @@
     @include('sections.works')
     @include('sections.services')
     @include('sections.testimonials')
-    @include('sections.clients')
+    <!-- @include('sections.clients') -->
     @include('sections.journal')
 </div>
 

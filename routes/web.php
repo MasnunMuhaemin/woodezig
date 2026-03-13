@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\WorkController;
+use App\Http\Controllers\ArticleController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -20,6 +21,12 @@ Route::get('/works/sub/{subcategory:slug}', [WorkController::class, 'index'])
 
 Route::get('/works/product/{slug}', [WorkController::class, 'show'])
     ->name('works.show');
+
+Route::get('/journal', [ArticleController::class, 'index'])
+    ->name('article.index');
+
+Route::get('/journal/{slug}', [ArticleController::class, 'show'])
+    ->name('article.show');
 
 Route::get('/catalog', [CatalogController::class, 'index'])
     ->name('catalog.index');
