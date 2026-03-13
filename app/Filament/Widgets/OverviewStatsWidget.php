@@ -11,8 +11,14 @@ class OverviewStatsWidget extends BaseWidget
 {
     protected function getStats(): array
     {
-        $catalog = Product::where('subcategory_id', 1)->count();
-        $karya = Product::where('subcategory_id', 2)->count();  
+        $catalog = Product::whereHas('subCategory', function ($query) {
+            $query->where('category_id', 1);
+        })->count();
+
+        $karya = Product::whereHas('subCategory', function ($query) {
+            $query->where('category_id', 2);
+        })->count();
+
         return [
             Stat::make('Total Artikel', Article::count())
                 ->description('Total artikel yang terdaftar')
