@@ -21,4 +21,15 @@
     footer {
         @apply font-jakarta;
     }
+
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .scroll-animate.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

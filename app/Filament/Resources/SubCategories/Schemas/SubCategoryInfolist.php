@@ -11,9 +11,10 @@ class SubCategoryInfolist
     {
         return $schema
             ->components([
-                TextEntry::make('category_id')
-                    ->numeric(),
-                TextEntry::make('name'),
+                TextEntry::make('category.name')
+                    ->label('Category'),
+                TextEntry::make('name')
+                    ->label('Sub Category'),
                 TextEntry::make('created_at')
                     ->dateTime()
                     ->placeholder('-'),

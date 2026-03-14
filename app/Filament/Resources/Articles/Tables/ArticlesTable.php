@@ -22,8 +22,12 @@ class ArticlesTable
                 TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable(),
-                ImageColumn::make('image')
-                    ->label('Gambar'),
+                ImageColumn::make('images.image')
+                    ->label('Gambar')
+                    ->disk('public')
+                    ->stacked()
+                    ->limit(3)
+                    ->circular(),
                 TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->dateTime()

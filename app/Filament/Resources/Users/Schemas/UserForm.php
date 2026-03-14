@@ -14,13 +14,19 @@ class UserForm
         return $schema
             ->components([
                 TextInput::make('name')
+                    ->label('Nama Lengkap')
+                    ->helperText('Masukkan nama pengguna admin.')
                     ->required()
                     ->maxLength(255),
                 TextInput::make('email')
+                    ->label('Alamat Email')
+                    ->helperText('Email digunakan untuk login ke panel admin.')
                     ->email()
                     ->required()
                     ->unique(ignoreRecord: true),
                 TextInput::make('password')
+                    ->label('Kata Sandi')
+                    ->helperText('Minimal 8 karakter. Biarkan kosong jika tidak ingin mengubah (pada mode edit).')
                     ->password()
                     ->dehydrateStateUsing(fn ($state) =>
                         filled($state) ? Hash::make($state) : null

@@ -9,6 +9,7 @@ use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\IconColumn;
 
 class ProductsTable
 {
@@ -20,9 +21,18 @@ class ProductsTable
                     ->label('Nama')
                     ->searchable()
                     ->sortable(),
+                IconColumn::make('is_featured')
+                    ->label('Produk Unggulan')
+                    ->boolean()
+                    ->sortable(),
                 TextColumn::make('slug')
                     ->label('Slug')
                     ->searchable(),
+                TextColumn::make('tags')
+                    ->label('Tags')
+                    ->badge()
+                    ->separator(',')
+                    ->placeholder('-'),
                 TextColumn::make('subCategory.name')
                     ->label('Sub Kategori')
                     ->sortable()
@@ -31,10 +41,12 @@ class ProductsTable
                     ->label('Kategori')
                     ->sortable()
                     ->searchable(),
-                ImageColumn::make('image')
-                    ->label('Gambar')
-                    ->width(200)
-                    ->height(200),
+                ImageColumn::make('images.image_path')
+                    ->label('Gallery')
+                    ->disk('public')
+                    ->stacked()
+                    ->limit(3)
+                    ->circular(),
                 TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->dateTime('d M Y H:i')

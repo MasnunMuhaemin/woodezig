@@ -1,93 +1,127 @@
 import "./bootstrap";
+import Lenis from "@studio-freight/lenis";
 
+// ===============================
+// INIT LENIS
+// ===============================
+const lenis = new Lenis({
+    duration: 1.2,
+    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    smoothWheel: true,
+    wheelMultiplier: 1.1,
+    touchMultiplier: 2,
+});
+
+function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+}
+requestAnimationFrame(raf);
+
+window.lenis = lenis;
+
+// ===============================
+// DOM READY
+// ===============================
 document.addEventListener("DOMContentLoaded", () => {
     // ===============================
-    // REVEAL TEXT SCROLL (SYNC LENIS)
+    // MOBILE MENU
     // ===============================
-    const textElement = document.getElementById("reveal-text");
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const body = document.body;
 
-    if (textElement) {
-        const textArea = textElement.innerText.trim();
-        const words = textArea.split(/\s+/);
-        textElement.innerHTML = "";
-
-        words.forEach((word) => {
-            const span = document.createElement("span");
-            span.innerText = word + " ";
-            span.className =
-                "text-[#333] transition-colors duration-[3000ms] ease-[cubic-bezier(0.1,0.9,0.2,1)]";
-            textElement.appendChild(span);
+    if (menuBtn && mobileMenu) {
+        menuBtn.addEventListener("click", () => {
+            mobileMenu.classList.toggle("opacity-0");
+            mobileMenu.classList.toggle("opacity-100");
+            mobileMenu.classList.toggle("invisible");
+            body.classList.toggle("overflow-hidden");
         });
 
-        const spans = textElement.querySelectorAll("span");
-
-        window.lenis?.on("scroll", ({ scroll }) => {
-            const windowHeight = window.innerHeight;
-            const containerRect = textElement.getBoundingClientRect();
-
-            const startY = windowHeight * 0.85;
-            const endY = windowHeight * 0.15;
-
-            let progress = (startY - containerRect.top) / (startY - endY);
-            progress = Math.max(0, Math.min(1, progress));
-
-            const totalWords = spans.length;
-            const activeCount = Math.ceil(progress * totalWords);
-
-            spans.forEach((span, index) => {
-                if (index < activeCount) {
-                    span.classList.remove("text-[#333]");
-                    span.classList.add("text-white");
-                } else {
-                    span.classList.remove("text-white");
-                    span.classList.add("text-[#333]");
-                }
+        document.querySelectorAll(".mobile-link").forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.add("opacity-0", "invisible");
+                mobileMenu.classList.remove("opacity-100");
+                body.classList.remove("overflow-hidden");
             });
         });
     }
 
     // ===============================
-    // HORIZONTAL SCROLL WORKS & PRODUCTS
+    // FIX ANCHOR SCROLL (SPA + MULTI PAGE)
     // ===============================
-    const horizontalSections = [
-        {
-            section: document.getElementById("works-section"),
-            track: document.getElementById("works-track"),
-        },
-        {
-            section: document.getElementById("products-section"),
-            track: document.getElementById("products-track"),
-        },
-    ];
+    document.querySelectorAll('a[href*="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+            const url = new URL(this.href);
+            const currentPath = window.location.pathname;
 
-    horizontalSections.forEach(({ section, track }) => {
-        if (section && track) {
-            window.lenis?.on("scroll", () => {
-                // Di mobile, biarkan drag / swipe asli bekerja
-                if (window.innerWidth < 1024) {
-                    track.style.transform = "none";
-                    return;
-                }
+            // jika beda page → biarkan pindah page
+            if (url.pathname !== currentPath) return;
 
-                const rect = section.getBoundingClientRect();
-                const viewportHeight = window.innerHeight;
+            const targetId = url.hash;
+            const targetElement = document.querySelector(targetId);
 
-                const maxScrollDist = section.offsetHeight - viewportHeight;
-                const maxTranslateDist = track.scrollWidth - window.innerWidth;
+            if (!targetElement) return;
 
-                if (maxTranslateDist <= 0) return;
+            e.preventDefault();
 
-                let progress = -rect.top / maxScrollDist;
-                progress = Math.max(0, Math.min(1, progress));
+            if (targetId === "#contact") {
+                lenis.scrollTo(document.body.scrollHeight, {
+                    duration: 1.2,
+                });
+                return;
+            }
 
-                const translateX = progress * maxTranslateDist;
+            if (targetId === "#home") {
+                lenis.scrollTo(0, {
+                    duration: 1.2,
+                });
+                return;
+            }
 
-                track.style.transform = `translateX(-${translateX}px)`;
+            lenis.scrollTo(targetElement, {
+                offset: -80,
+                duration: 1.2,
             });
-        }
+        });
     });
 
     // ===============================
+    // SCROLL HASH AFTER PAGE LOAD
+    // (FIX MULTI PAGE #CONTACT)
+    // ===============================
+    if (window.location.hash) {
+        const targetId = window.location.hash;
+        const targetElement = document.querySelector(targetId);
+
+        if (targetElement) {
+            window.addEventListener("load", () => {
+                setTimeout(() => {
+                    if (targetId === "#contact") {
+                        lenis.scrollTo(document.body.scrollHeight, {
+                            duration: 1.2,
+                        });
+                        return;
+                    }
+
+                    if (targetId === "#home") {
+                        lenis.scrollTo(0, {
+                            duration: 1.2,
+                        });
+                        return;
+                    }
+
+                    lenis.scrollTo(targetElement, {
+                        offset: -80,
+                        duration: 1.2,
+                    });
+                }, 300);
+            });
+        }
+    }
+
+     // ===============================
     // SERVICES IMAGE HOVER + AUTO LOOP
     // ===============================
     const serviceItems = document.querySelectorAll(".service-item");
@@ -179,123 +213,123 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ===============================
-    // SECTION TITLE REVEAL
+    // HERO FADE OUT
     // ===============================
-    const sectionTitles = document.querySelectorAll(
-        ".journal-section-title, .works-section-title, .products-section-title",
-    );
+    const heroContent = document.getElementById("hero-content");
 
-    sectionTitles.forEach((title) => {
-        const text = title.innerText.trim();
-        title.innerHTML = "";
+    lenis.on("scroll", ({ scroll }) => {
+        const vh = window.innerHeight;
 
-        [...text].forEach((char) => {
-            const wrapper = document.createElement("span");
-            wrapper.style.display = "inline-block";
-            wrapper.style.overflow = "hidden";
-
-            const innerChar = document.createElement("span");
-            innerChar.innerText = char === " " ? "\u00A0" : char;
-            innerChar.style.display = "inline-block";
-            innerChar.style.transform = "translateY(110%)";
-            innerChar.style.transition =
-                "transform 1.2s cubic-bezier(0.16, 1, 0.3, 1)";
-            innerChar.className = "reveal-section-char";
-
-            wrapper.appendChild(innerChar);
-            title.appendChild(wrapper);
-        });
-
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const chars = entry.target.querySelectorAll(
-                        ".reveal-section-char",
-                    );
-
-                    if (entry.isIntersecting) {
-                        chars.forEach((char, index) => {
-                            setTimeout(() => {
-                                char.style.transform = "translateY(0)";
-                            }, index * 40);
-                        });
-                    } else {
-                        chars.forEach((char) => {
-                            char.style.transform = "translateY(110%)";
-                        });
-                    }
-                });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-        );
-
-        observer.observe(title);
+        if (heroContent) {
+            const progress = Math.min(scroll / vh, 1);
+            heroContent.style.opacity = 1 - progress;
+        }
     });
 
     // ===============================
-    // JOURNAL TITLE WORD REVEAL
+    // REVEAL TEXT SCROLL
     // ===============================
-    const journalTitles = document.querySelectorAll(".journal-title");
+    const textElement = document.getElementById("reveal-text");
 
-    journalTitles.forEach((title) => {
-        const text = title.innerText.trim();
-        const words = text.split(/\s+/);
-        title.innerHTML = "";
+    if (textElement) {
+        const textArea = textElement.innerText.trim();
+        const words = textArea.split(/\s+/);
+
+        textElement.innerHTML = "";
 
         words.forEach((word) => {
-            const wrapper = document.createElement("span");
-            wrapper.style.display = "inline-block";
-            wrapper.style.overflow = "hidden";
+            const span = document.createElement("span");
 
-            const innerWord = document.createElement("span");
-            innerWord.innerText = word + "\u00A0";
-            innerWord.style.display = "inline-block";
-            innerWord.style.transform = "translateY(110%)";
-            innerWord.style.transition =
-                "transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
-            innerWord.className = "reveal-word";
+            span.innerText = word + " ";
+            span.className =
+                "text-[#333] transition-colors duration-[3000ms] ease-[cubic-bezier(0.1,0.9,0.2,1)]";
 
-            wrapper.appendChild(innerWord);
-            title.appendChild(wrapper);
+            textElement.appendChild(span);
         });
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    const words = entry.target.querySelectorAll(".reveal-word");
+        const spans = textElement.querySelectorAll("span");
 
-                    if (entry.isIntersecting) {
-                        words.forEach((word, index) => {
-                            setTimeout(() => {
-                                word.style.transform = "translateY(0)";
-                            }, index * 40);
-                        });
-                    } else {
-                        words.forEach((word) => {
-                            word.style.transform = "translateY(110%)";
-                        });
-                    }
-                });
-            },
-            { threshold: 0.1, rootMargin: "0px 0px -100px 0px" },
-        );
+        lenis.on("scroll", () => {
+            const windowHeight = window.innerHeight;
+            const containerRect = textElement.getBoundingClientRect();
 
-        observer.observe(title);
+            const startY = windowHeight * 0.85;
+            const endY = windowHeight * 0.15;
+
+            let progress = (startY - containerRect.top) / (startY - endY);
+
+            progress = Math.max(0, Math.min(1, progress));
+
+            const totalWords = spans.length;
+            const activeCount = Math.ceil(progress * totalWords);
+
+            spans.forEach((span, index) => {
+                if (index < activeCount) {
+                    span.classList.remove("text-[#333]");
+                    span.classList.add("text-white");
+                } else {
+                    span.classList.remove("text-white");
+                    span.classList.add("text-[#333]");
+                }
+            });
+        });
+    }
+
+    // ===============================
+    // HORIZONTAL SCROLL
+    // ===============================
+    const horizontalSections = [
+        {
+            section: document.getElementById("works-section"),
+            track: document.getElementById("works-track"),
+        },
+        {
+            section: document.getElementById("products-section"),
+            track: document.getElementById("products-track"),
+        },
+    ];
+
+    horizontalSections.forEach(({ section, track }) => {
+        if (!section || !track) return;
+
+        lenis.on("scroll", () => {
+            if (window.innerWidth < 1024) {
+                track.style.transform = "none";
+                return;
+            }
+
+            const rect = section.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+
+            const maxScrollDist = section.offsetHeight - viewportHeight;
+            const maxTranslateDist = track.scrollWidth - window.innerWidth;
+
+            if (maxTranslateDist <= 0) return;
+
+            let progress = -rect.top / maxScrollDist;
+
+            progress = Math.max(0, Math.min(1, progress));
+
+            const translateX = progress * maxTranslateDist;
+
+            track.style.transform = `translateX(-${translateX}px)`;
+        });
     });
 
     // ===============================
-    // NAVBAR SCROLL EFFECT (LENIS)
+    // NAVBAR SCROLL EFFECT
     // ===============================
     const navbar = document.getElementById("navbar");
 
-    if (navbar && window.lenis) {
-        window.lenis.on("scroll", ({ scroll }) => {
+    if (navbar) {
+        lenis.on("scroll", ({ scroll }) => {
             if (scroll > 50) {
                 navbar.classList.add(
                     "bg-black/80",
                     "backdrop-blur-xl",
                     "border-white/10",
                 );
+
                 navbar.classList.remove("bg-transparent", "border-transparent");
             } else {
                 navbar.classList.remove(
@@ -303,8 +337,94 @@ document.addEventListener("DOMContentLoaded", () => {
                     "backdrop-blur-xl",
                     "border-white/10",
                 );
+
                 navbar.classList.add("bg-transparent", "border-transparent");
             }
+        });
+    }
+
+    // ===============================
+    // PAGE LOADER
+    // ===============================
+    const loader = document.getElementById("page-loader");
+
+    if (loader) {
+        loader.style.opacity = "1";
+        loader.style.display = "flex";
+
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                loader.style.opacity = "0";
+
+                setTimeout(() => {
+                    loader.style.display = "none";
+                }, 500);
+            }, 300);
+        });
+    }
+    // ===============================
+    // FEATURED PRODUCTS CAROUSEL
+    // ===============================
+    const featuredTrack = document.getElementById('carousel-track');
+    const featuredPrevBtn = document.getElementById('carousel-prev');
+    const featuredNextBtn = document.getElementById('carousel-next');
+    const featuredItems = featuredTrack ? featuredTrack.children : [];
+    
+    if (featuredTrack && featuredItems.length > 1) {
+        let featuredIndex = 0;
+
+        function updateFeaturedCarousel() {
+            featuredTrack.style.transform = `translateX(-${featuredIndex * 100}%)`;
+        }
+
+        featuredNextBtn?.addEventListener('click', () => {
+            featuredIndex = (featuredIndex + 1) % featuredItems.length;
+            updateFeaturedCarousel();
+        });
+
+        featuredPrevBtn?.addEventListener('click', () => {
+            featuredIndex = (featuredIndex - 1 + featuredItems.length) % featuredItems.length;
+            updateFeaturedCarousel();
+        });
+        
+        // Touch events for mobile
+        let featuredTouchStartX = 0;
+        let featuredTouchEndX = 0;
+
+        featuredTrack.addEventListener('touchstart', e => {
+            featuredTouchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        featuredTrack.addEventListener('touchend', e => {
+            featuredTouchEndX = e.changedTouches[0].screenX;
+            handleFeaturedGesture();
+        }, { passive: true });
+
+        function handleFeaturedGesture() {
+            const swipeDistance = featuredTouchEndX - featuredTouchStartX;
+            if (swipeDistance < -50) {
+                // Swipe Left - Next
+                featuredIndex = (featuredIndex + 1) % featuredItems.length;
+                updateFeaturedCarousel();
+            } else if (swipeDistance > 50) {
+                // Swipe Right - Prev
+                featuredIndex = (featuredIndex - 1 + featuredItems.length) % featuredItems.length;
+                updateFeaturedCarousel();
+            }
+        }
+        
+        // Auto play
+        let featuredAutoPlay = setInterval(() => {
+            featuredIndex = (featuredIndex + 1) % featuredItems.length;
+            updateFeaturedCarousel();
+        }, 8000);
+        
+        featuredTrack.addEventListener('mouseenter', () => clearInterval(featuredAutoPlay));
+        featuredTrack.addEventListener('mouseleave', () => {
+            featuredAutoPlay = setInterval(() => {
+                featuredIndex = (featuredIndex + 1) % featuredItems.length;
+                updateFeaturedCarousel();
+            }, 8000);
         });
     }
 });

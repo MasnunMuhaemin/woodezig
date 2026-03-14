@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Article;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        // Ambil maksimal 6 produk terbaru berdasarkan kategori "catalog" atau "produk"
+        // Catalog Products
         $catalogProducts = Product::with('subCategory.category')
             ->whereHas('subCategory.category', function ($query) {
                 $query->where('name', 'like', '%catalog%')
@@ -19,7 +20,7 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        // Ambil maksimal 6 produk terbaru berdasarkan kategori "karya"
+        // Karya Products
         $karyaProducts = Product::with('subCategory.category')
             ->whereHas('subCategory.category', function ($query) {
                 $query->where('name', 'like', '%karya%');
@@ -28,6 +29,22 @@ class HomeController extends Controller
             ->take(6)
             ->get();
 
-        return view('home', compact('catalogProducts', 'karyaProducts'));
+        // Featured Products (dari kolom migration baru)
+        $featuredProducts = Product::with('images')
+            ->where('is_featured', true)
+            ->latest()
+            ->get();
+
+        // Articles
+        $articles = Article::latest()
+            ->take(3)
+            ->get();
+
+        return view('home', compact(
+            'catalogProducts',
+            'karyaProducts',
+            'articles',
+            'featuredProducts'
+        ));
     }
 }

@@ -8,6 +8,7 @@ use Filament\Actions\EditAction;
 use Filament\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use App\Filament\Resources\SubCategories\SubCategoryResource;
 
 class SubCategoriesTable
 {
@@ -19,14 +20,22 @@ class SubCategoriesTable
                     ->label('Kategori')
                     ->sortable()
                     ->searchable(),
+
                 TextColumn::make('name')
                     ->label('Sub Kategori')
                     ->searchable()
                     ->sortable(),
+
+                TextColumn::make('slug')
+                    ->label('Slug')
+                    ->searchable()
+                    ->sortable(),
+
                 TextColumn::make('created_at')
                     ->label('Dibuat Pada')
                     ->dateTime('d M Y H:i')
                     ->sortable(),
+
                 TextColumn::make('updated_at')
                     ->label('Diperbarui Pada')
                     ->dateTime('d M Y H:i')
@@ -36,8 +45,10 @@ class SubCategoriesTable
                 //
             ])
             ->recordActions([
-                ViewAction::make(),
-                EditAction::make(),
+                ViewAction::make()
+                    ->url(fn ($record) => SubCategoryResource::getUrl('view', ['record' => $record])),
+                EditAction::make()
+                    ->url(fn ($record) => SubCategoryResource::getUrl('edit', ['record' => $record])),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
