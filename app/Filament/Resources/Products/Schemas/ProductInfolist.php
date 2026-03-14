@@ -7,6 +7,8 @@ use Filament\Infolists\Components\ImageEntry;
 use Filament\Schemas\Schema;
 use Filament\Infolists\Components\Section;
 use Filament\Infolists\Components\RepeatableEntry;
+use Filament\Infolists\Components\IconEntry;
+use Filament\Infolists\Components\TagsEntry;
 
 class ProductInfolist
 {
@@ -21,6 +23,14 @@ class ProductInfolist
                     ->label('Category'),
                 TextEntry::make('subCategory.name')
                     ->label('Sub Category'),
+                IconEntry::make('is_featured')
+                    ->label('Produk Unggulan')
+                    ->boolean(),
+                TextEntry::make('tags')
+                    ->label('Tags')
+                    ->badge()
+                    ->separator(',')
+                    ->placeholder('-'),
                 TextEntry::make('description')
                     ->label('Deskripsi')
                     ->columnSpanFull(),

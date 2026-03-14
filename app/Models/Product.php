@@ -10,6 +10,7 @@ class Product extends Model
         'name',
         'slug',
         'subcategory_id',
+        'tags',
         'description',
         'is_featured',
     ];

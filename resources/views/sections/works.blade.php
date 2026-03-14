@@ -23,6 +23,7 @@
                     image="{{ $karya->first_image_url }}" 
                     title="{{ $karya->name }}" 
                     category="{{ strtoupper($karya->subCategory->name ?? 'KARYA') }}"
+                    :tags="$karya->tags ? explode(',', $karya->tags) : []"
                     :href="route('works.show', $karya->slug)" 
                 />
             @endforeach            
